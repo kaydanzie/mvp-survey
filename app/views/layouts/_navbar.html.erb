@@ -1,21 +1,21 @@
-<nav class="navbar navbar-expand-lg p-3">
+<nav class="navbar navbar-expand-lg">
   <%= link_to(image_tag('ffi-logo.svg', height: '20', width: '144', alt: 'FFI Logo'), root_path, class: 'navbar-brand') %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mvp-survey-navbar-toggler">
+    <span class="navbar-toggler-icon"><%= image_tag 'user.png' %></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="mvp-survey-navbar-toggler">
+    <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
 
       <% end %>
-    </div>
+    </ul>
 
     <span class="auth">
       <% if user_signed_in? %>
         <div class="btn-group">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             <%= current_user.first_name %>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
