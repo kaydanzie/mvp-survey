@@ -9,7 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= controller.controller_name %>"
+        data-controller="<%= controller.controller_path %>"
+        data-action="<%= controller.action_name %>">
+
     <%= render 'layouts/flash_notices' %>
 
     <div class="container">
