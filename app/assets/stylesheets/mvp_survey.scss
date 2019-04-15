@@ -61,4 +61,13 @@ body.ffi-default-theme {
       padding: 0.85rem;
     }
   }
+
+  // Override bright blue background on click
+  a.dropdown-item:active {
+    color: $ffi-primary-green;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: none;
+    background-color: transparent;
+  }
 }
