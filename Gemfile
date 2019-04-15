@@ -34,6 +34,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # For managing users and authentication
 gem 'devise'
 
+# https://github.com/twbs/bootstrap-rubygem
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
 
