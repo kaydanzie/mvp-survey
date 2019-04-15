@@ -35,7 +35,7 @@ To edit secrets:
 To run all tests:
 
 ```
-TBD
+rspec
 ```
 
 ### Local Server
