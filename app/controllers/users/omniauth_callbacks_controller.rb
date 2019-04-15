@@ -1,4 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  # This needs to run even if user is not logged in, redirects after login
+  skip_before_action :require_login, only: :google_oauth2
+
   # rubocop:disable Metrics/AbcSize, Metrics/LineLength
   def google_oauth2
     @user = User.from_omniauth(request.env['omniauth.auth'])
