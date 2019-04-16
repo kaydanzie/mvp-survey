@@ -6,9 +6,11 @@
   </button>
 
   <div class="collapse navbar-collapse" id="mvp-survey-navbar-toggler">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto mt-2">
       <% if user_signed_in? %>
-
+        <li class="nav-item">
+          <%= link_to "Employees", users_path, class: "nav-link" %>
+        </li>
       <% end %>
     </ul>
 
