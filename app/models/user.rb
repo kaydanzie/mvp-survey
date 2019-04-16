@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  ROLES = ['employee', 'admin', 'super admin'].freeze
+  ROLES = ['employee', 'super admin'].freeze
   devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   after_create :initialize_role
@@ -13,10 +13,6 @@ class User < ApplicationRecord
   def ffi_email_address?
     has_ffi_email = email.split('@')[1] == 'formulafolios.com'
     errors.add(:email, "Please log in with an FFI email address.") unless has_ffi_email
-  end
-
-  def admin?
-    role == "admin"
   end
 
   def super_admin?
