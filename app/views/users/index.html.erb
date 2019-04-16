@@ -5,6 +5,7 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
+      <th scope="col">Role</th>
     </tr>
   </thead>
 
@@ -13,6 +14,15 @@
       <tr>
         <td><%= [u.first_name, u.last_name].join(" ") %></td>
         <td><%= u.email %></td>
+        <% if current_user.super_admin? %>
+          <td class="form-group">
+            <%= form_with model: u, local: true do |user_form| %>
+              <%= user_form.select :role, User::ROLES.map { |r| [r.titleize, r] }, {}, onchange: "this.form.submit();", class: "form-control custom-select" %>
+            <% end %>
+          </td>
+        <% else %>
+          <td><%= u.role.titleize %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
