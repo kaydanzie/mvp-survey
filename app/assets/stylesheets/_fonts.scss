@@ -1,0 +1,21 @@
+/* FFI DEFAULT TYPOGRAPHY */
+@font-face {
+  font-family: 'Messina Sans Regular';
+  src:font-url('MessinaSansWeb-Regular.eot');
+  src:font-url('MessinaSansWeb-Regular.woff2') format('woff2'),
+      font-url('MessinaSansWeb-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Messina Sans SemiBold';
+  src:font-url('MessinaSansWeb-SemiBold.eot');
+  src:font-url('MessinaSansWeb-SemiBold.woff2') format('woff2'),
+      font-url('MessinaSansWeb-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Messina Sans Light';
+  src:font-url('MessinaSansWeb-Light.eot');
+  src:font-url('MessinaSansWeb-Light.woff2') format('woff2'),
+      font-url('MessinaSansWeb-Light.woff') format('woff');
+}

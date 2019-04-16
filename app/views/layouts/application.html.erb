@@ -5,11 +5,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= favicon_link_tag asset_path('ffi-favicon.png'), rel: 'icon', type: 'image/x-icon' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="ffi-default-theme <%= controller.controller_name %>"
+        data-controller="<%= controller.controller_path %>"
+        data-action="<%= controller.action_name %>">
+
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/flash_notices' %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

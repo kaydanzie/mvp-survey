@@ -1,0 +1,1031 @@
+@import 'fonts';
+
+/*-----------------------------------------------------------------------------------*/
+/*
+STYLES ADAPTED FROM FFI DEFAULT DESIGN SYSTEM:
+https://projects.invisionapp.com/d/main#/console/15129591/314590797/preview
+and FFI brand guidelines:
+https://brand.formulafolios.com/
+*/
+/*-----------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
+/* FFI DEFAULT VARS */
+/*-----------------------------------------------------------------------------------*/
+
+$ffi-primary-green: #34BC72;
+$ffi-primary-blue: #003BDE;
+$ffi-primary-red: #F42121;
+$ffi-primary-orange: #F6AB2F;
+$ffi-primary-text-color: #191E1E;
+$ffi-secondary-text-color: #5D6A7A;
+$ffi-primary-grey: #E4E8EE;
+$ffi-secondary-grey: #B3B3B3;
+$ffi-light-grey: #EAEDF3;
+$ffi-dark-grey: #3E3F42;
+$dark-green: #2FA564;
+$dark-blue: #0032BB;
+$dark-red: #C23C24;
+$primary-font: 'Messina Sans Regular';
+$secondary-font: 'Messina Sans SemiBold';
+$tertiary-font: 'Messina Sans Light';
+$btn-border-color: #D3DBE0;
+$btn-disabled-font-color: #B8ACAC;
+$btn-disabled-bkg-color: #F5F5F5;
+$form-grey-secondary: #9D9D9D;
+$form-input-text-color: #1A1A1A;
+$form-label-small-text-color: #9EA0A5;
+$popover-background: #444446;
+$hover-state-modal: #1333c1;
+
+body.ffi-default-theme {
+  /*-----------------------------------------------------------------------------------*/
+  /* DEFAULT FFI FONT TYPE */
+  /*-----------------------------------------------------------------------------------*/
+
+  font-family: $primary-font, Arial, sans-serif;
+
+  /*-----------------------------------------------------------------------------------*/
+  /* PARAGRAPH STYLES */
+  /*-----------------------------------------------------------------------------------*/
+
+  h1 {
+    font-size: 36px;
+    color: $ffi-primary-text-color;
+    line-height: 50px;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: $ffi-primary-text-color;
+    line-height: 32px;
+  }
+
+  p {
+    font-size: 18px;
+    color: $ffi-secondary-text-color;
+    line-height: 28px;
+
+    &.small {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  blockquote {
+    font-family: $secondary-font;
+    color: $ffi-primary-text-color;
+    font-size: 26px;
+    line-height: 38px;
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* BUTTON STYLES/STATES */
+  /*-----------------------------------------------------------------------------------*/
+
+  /* FFI Primary. Button */
+  .btn-primary {
+    border-radius: 3px;
+    background-color: $ffi-primary-green;
+    border-color: $ffi-primary-green;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    padding: 13px 23px 13px 23px;
+
+    &:hover {
+      background-color: $dark-green;
+      border-color: $dark-green;
+      color: #fff;
+    }
+
+    &:active, &:focus {
+      background-color: $ffi-primary-green !important;
+      border-color: $ffi-primary-green !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      border-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Primary Reversed */
+  .btn-outline-primary {
+    border: 1px solid $btn-border-color;
+    border-radius: 3px;
+    color: $ffi-primary-green;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    padding: 13px 23px 13px 23px;
+
+    &:hover {
+      border: 1px solid $ffi-primary-green;
+      background-color: #fff;
+      color: $ffi-primary-green;
+    }
+
+    &:active, &:focus {
+      background-color: transparent !important;
+      border-color: 1px solid $ffi-primary-green !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      border: 1px solid $btn-border-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Secondary Button */
+  .btn-secondary {
+    border-radius: 3px;
+    background-color: $ffi-primary-blue;
+    color: #fff;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    padding: 13px 23px 13px 23px;
+
+    &:hover {
+      background-color: $dark-blue;
+      border-color: $dark-blue;
+      color: #fff;
+    }
+
+    &:active, &:focus {
+      background-color: $dark-blue !important;
+      border-color: $dark-blue !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+      border-color: $btn-disabled-bkg-color;
+    }
+  }
+
+  /* FFI Secondary Reversed */
+  .btn-outline-secondary {
+    border: 1px solid $btn-border-color;
+    border-radius: 3px;
+    color: $ffi-primary-blue;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    padding: 13px 23px 13px 23px;
+
+    &:hover {
+      border: 1px solid $ffi-primary-blue;
+      background-color: #fff;
+      color: $ffi-primary-blue;
+    }
+
+    &:active, &:focus {
+      background-color: transparent !important;
+      border-color: 1px solid $ffi-primary-blue !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      border: 1px solid $btn-border-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Tertiary Button */
+  .btn-light {
+    border-radius: 4px;
+    background-color: #fff;
+    color: $ffi-primary-text-color;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
+    padding: 13px 23px 13px 23px;
+
+    &:hover {
+      color: $ffi-secondary-text-color;
+      box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
+      color: $ffi-primary-text-color;
+    }
+
+    &:active, &:focus {
+      background-color: #fff !important;
+      border-color: #fff !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      border-radius: 3px;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Caution Button */
+  .btn-danger {
+    border-radius: 3px;
+    background-color: $ffi-primary-red;
+    border-color: $ffi-primary-red;
+    color: #fff;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    padding: 13px 23px 13px 23px;
+
+    &:hover {
+      background-color: $dark-red;
+      border-color: $dark-red;
+      color: #fff;
+    }
+
+    &:active, &:focus {
+      background-color: $dark-red!important;
+      border-color: $dark-red !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      border-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Primary Button - Small */
+  .btn-primary.btn-sm {
+    border-radius: 4px;
+    background-color: $ffi-primary-green;
+    color: #fff;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 16px;
+    padding: 8px 23px 8px 23px;
+
+    &:hover {
+      background-color: $dark-green;
+      border-color: $dark-green;
+      color: #fff;
+    }
+
+    &:active, &:focus {
+      background-color: $ffi-primary-green !important;
+      border-color: $ffi-primary-green !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      border-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Primary Reversed - Small */
+  .btn-outline-primary.btn-sm {
+    border: 1px solid $btn-border-color;
+    border-radius: 3px;
+    color: $ffi-primary-green;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 16px;
+    padding: 8px 23px 8px 23px;
+
+    &:hover {
+      border: 1px solid $ffi-primary-green;
+      background-color: #fff;
+      color: $ffi-primary-green;
+    }
+
+    &:active, &:focus {
+      background-color: transparent !important;
+      border-color: 1px solid $ffi-primary-green !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      border: 1px solid $btn-border-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Secondary Button - Small */
+  .btn-secondary.btn-sm {
+    border-radius: 3px;
+    background-color: $ffi-primary-blue;
+    color: #fff;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 16px;
+    padding: 8px 23px 8px 23px;
+
+    &:hover {
+      background-color: $dark-blue;
+      border-color: $dark-blue;
+      color: #fff;
+    }
+
+    &:active, &:focus {
+      background-color: $dark-blue!important;
+      border-color: $dark-blue!important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+      border-color: $btn-disabled-bkg-color;
+    }
+  }
+
+  /* FFI Secondary Reversed - Small*/
+  .btn-outline-secondary.btn-sm {
+    border: 1px solid $btn-border-color;
+    border-radius: 3px;
+    color: $ffi-primary-blue;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    padding: 8px 23px 8px 23px;
+
+    &:hover {
+      border: 1px solid $ffi-primary-blue;
+      background-color: #fff;
+      color: $ffi-primary-blue;
+    }
+
+    &:active, &:focus {
+      background-color: transparent !important;
+      border-color: 1px solid $ffi-primary-blue !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      border: 1px solid $btn-border-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Tertiary Button - Small */
+  .btn-light.btn-sm {
+    border-radius: 4px;
+    background-color: #fff;
+    color: $ffi-primary-text-color;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 22px;
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
+    padding: 8px 23px 8px 23px;
+
+    &:hover {
+      color: $ffi-secondary-text-color;
+      box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
+      color: $ffi-primary-text-color;
+    }
+
+    &:active, &:focus {
+      background-color: #fff !important;
+      border-color: #fff !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      border-radius: 3px;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* FFI Caution Button - Small */
+  .btn-danger.btn-sm {
+    border-radius: 3px;
+    box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.08), 0 1px 1px 0 rgba(43,26,24,0.1);
+    background-color: $ffi-primary-red;
+    border-color: $ffi-primary-red;
+    color: #fff;
+    font-size: 14px;
+    font-family: $secondary-font;
+    line-height: 16px;
+    padding: 8px 23px 8px 23px;
+
+    &:hover {
+      background-color: $dark-red;
+      border-color: $dark-red;
+      color: #fff;
+    }
+
+    &:active, &:focus {
+      background-color: $dark-red !important;
+      border-color: $dark-red !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-color: $btn-disabled-bkg-color;
+      border-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+    }
+  }
+
+  /* CUSTOM SELECT BUTTON */
+  label {
+    &.btn.btn-primary {
+      background-color: #F0F1F5;
+      border-radius: 3px;
+      border-color: #F0F1F5;
+      color: $ffi-secondary-text-color;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 22px;
+      padding: 13px 23px 13px 23px;
+      height: 48px;
+
+      &:hover {
+        background-color: #F8F8FA !important;
+        border-color: #F8F8F8 !important;
+        color: $ffi-secondary-text-color;
+      }
+
+      &.active {
+        background-color: #fff !important;
+        border: 1px solid $ffi-primary-blue !important;
+        outline: none;
+        box-shadow: none;
+        color: $ffi-primary-blue;
+      }
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* LINKS */
+  /*-----------------------------------------------------------------------------------*/
+
+  a {
+    font-family: $secondary-font;
+    font-size: 14px;
+
+    text-decoration: none;
+    color: $ffi-primary-green;
+
+    &:hover {
+      color: $dark-green;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: $ffi-secondary-text-color;
+    }
+
+    &.secondary-link {
+      color: $ffi-primary-blue;
+
+      &:hover {
+        color: $dark-blue;
+      }
+    }
+
+    &.tertiary-link {
+      color: $ffi-primary-text-color;
+    }
+
+    &.quaternary-link {
+      color: $ffi-secondary-text-color;
+
+      &:hover {
+        color: #000;
+      }
+    }
+
+    &.quinary-link {
+      color: $ffi-primary-blue;
+      font-family: $primary-font;
+    }
+
+    &.underlined-primary {
+      color: $ffi-primary-green;
+      text-decoration: underline;
+
+      &:hover {
+        color: $dark-green;
+      }
+    }
+
+    &.underlined-secondary {
+      color: $ffi-primary-blue;
+      text-decoration: underline;
+
+      &:hover {
+        color: $dark-blue;
+      }
+    }
+
+    &.underlined-tertiary {
+      color: $ffi-primary-text-color;
+      text-decoration: underline;
+    }
+
+    &.underlined-quaternary {
+      color: $ffi-secondary-text-color;
+      text-decoration: underline;
+
+      &:hover {
+        color: #000;
+      }
+    }
+
+    &.underlined-quinary {
+      color: $ffi-primary-blue;
+      text-decoration: underline;
+      font-family: $primary-font;
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* FORM STYLES */
+  /*-----------------------------------------------------------------------------------*/
+
+  form {
+    .form-group, .form-row {
+      padding: 10px;
+
+      label {
+        font-family: $secondary-font;
+        font-size: 12px;
+        line-height: 18px;
+        color: $form-label-small-text-color;
+
+        .required-asterisk {
+          color: $ffi-primary-red;
+          font-size: 18px;
+          line-height: 18px;
+        }
+      }
+
+      small {
+        font-family: $primary-font;
+        color: $form-label-small-text-color !important;
+        font-size: 14px;
+        line-height: 16px;
+      }
+
+      .invalid-feedback {
+        font-family: $primary-font;
+        font-size: 14px;
+        float: right;
+        color: $ffi-primary-red;
+        line-height: 16px;
+        width: auto;
+        display: block;
+      }
+
+      .info-icon {
+        cursor: pointer;
+        float: right;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .input-group {
+        .input-group-prepend {
+          border-radius: 3px 0 0 3px;
+          background-color: #F6F6F6;
+
+          .input-group-text {
+            font-family: $primary-font;
+            color: $ffi-secondary-text-color;
+            font-size: 14px;
+            line-height: 22px;
+          }
+        }
+      }
+
+      .form-control {
+        font-family: $primary-font;
+        border: 1px solid $ffi-primary-grey;
+        border-radius: 3px;
+        color: $form-input-text-color;
+        font-size: 14px;
+        line-height: 20px;
+        height: 40px;
+
+        &:focus {
+          border: 1px solid $form-grey-secondary;
+          outline: none;
+          box-shadow: none;
+        }
+
+        &:disabled {
+          border: 1px solid #EDEDED;
+          background-color: $btn-disabled-bkg-color;
+        }
+
+        &.is-invalid {
+          border: 1px solid $ffi-primary-red;
+        }
+
+        &::placeholder {
+          color: $form-grey-secondary;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+
+      /* Select dropdown in form */
+      .custom-select {
+        font-family: $secondary-font;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: left;
+        color: $ffi-primary-text-color;
+        border-radius: 3px;
+        border: 1px solid $ffi-primary-grey;
+        box-shadow: none;
+        height: 40px;
+        background: image-url('arrow-down.svg') right 20px top 50% no-repeat !important;
+
+        &::after {
+          vertical-align: 0;
+          display: none;
+        }
+
+        &:focus, &:active {
+          border: 1px solid $form-grey-secondary;
+        }
+
+        &:disabled {
+          background-color: $btn-disabled-bkg-color !important;
+        }
+      }
+    }
+
+    option:not(:checked) {
+      background-color: #fff;
+    }
+
+    /* CUSTOM FFI CHECKBOX AND RADIO BUTTON */
+    /* Inspiration from: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+
+    /* Customize the label (the container) */
+    .checkbox-radio-container {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 16px;
+      font-family: $primary-font;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .checkbox-radio-container input {
+      display: none;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 16px;
+      width: 16px;
+      background-color: #fff;
+      border-radius: 3px;
+      border: 1px solid $ffi-secondary-grey;
+      display:inline-block;
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+      &:after {
+        content: '';
+        display: none;
+        width: 3px;
+        height: 6px;
+        border: solid #000;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    /* Create a custom radio button */
+    .radio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 16px;
+      width: 16px;
+      background-color: #fff;
+      border-radius: 50%;
+      border: 1px solid $ffi-secondary-grey;
+
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      &:after {
+        content: '';
+        display: none;
+      }
+    }
+
+    .checkbox-radio-container:hover input ~ .checkmark {
+      background-color: #fff;
+      border-radius: 3px;
+      border: 1px solid $ffi-secondary-grey;
+    }
+
+    .checkbox-radio-container:hover input ~ .radio {
+      background-color: #fff;
+      border: 1px solid $ffi-secondary-grey;
+    }
+
+    /* When the checkbox is checked, background should remain white */
+    .checkbox-radio-container input:checked ~ .checkmark {
+      background-color: #fff;
+    }
+
+    /* When the radio button is checked, background should be ffi green */
+    .checkbox-radio-container input:checked ~ .radio {
+      background-color: $ffi-primary-green;
+      border: solid $ffi-primary-green;
+    }
+
+    /* Show the indicator when checked */
+    .checkbox-radio-container input:checked ~ .checkmark:after, .radio:after {
+      display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .checkbox-radio-container .checkmark:after {
+      width: 5px;
+      height: 10px;
+      border: solid $ffi-primary-green;
+      margin-left: 5px;
+      border-width: 0 1px 1px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    /* Style the indicator (dot/circle) */
+    .checkbox-radio-container .radio:after {
+      width: 6px;
+      height: 6px;
+      margin-top: 2px;
+      margin-left: 2px;
+      border-radius: 50%;
+      background: #fff;
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Dropdown
+  /*-----------------------------------------------------------------------------------*/
+
+  .dropdown {
+    button.dropdown-toggle {
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: left;
+      border-radius: 3px;
+      width: 100%;
+      color: $ffi-primary-text-color;
+      border: 1px solid $ffi-primary-grey;
+      box-shadow: none;
+      background: image-url('arrow-down.svg') right 20px top 50% no-repeat !important;
+
+      &::after {
+        vertical-align: 0;
+        display: none;
+        box-shadow: none;
+      }
+
+      &:focus, &:active {
+        border-color: $ffi-primary-grey !important;
+        box-shadow: none;
+      }
+    }
+
+    .dropdown-menu {
+      margin-top: 5px;
+      width: 100%;
+      box-shadow: 0 1px 0 0 $ffi-light-grey;
+
+      a {
+        font-family: $primary-font;
+        color: $ffi-dark-grey;
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Toggle Switch */
+  /* Inspiration from: https://codepen.io/aanjulena/pen/ZLZjzV */
+  /*-----------------------------------------------------------------------------------*/
+
+  .btn-toggle {
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $ffi-light-grey;
+    box-shadow: none;
+    margin: 15px;
+    padding: 0;
+    position: relative;
+    border: none;
+    height: 20px;
+    width: 36px;
+    border-radius: 1rem;
+
+    &.active {
+      background-color: $ffi-primary-green;
+    }
+
+    &:focus, &.focus {
+      &.active {
+        outline: none;
+      }
+    }
+
+    &:before, &:after {
+      position: absolute;
+      bottom: 0;
+      transition: opacity .25s;
+    }
+
+    .handle {
+      position: absolute;
+      top: -0.1rem;
+      left: -0.4rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+      transition: left .25s;
+    }
+
+    &.active {
+      .handle {
+        left: 1.15rem;
+        transition: left .25s;
+        background: #fff;
+      }
+    }
+
+    &.btn-xs {
+      &:before, &:after {
+        display: none;
+      }
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Popover */
+  /*-----------------------------------------------------------------------------------*/
+
+  .popover {
+    .popover-body {
+      font-family: $primary-font;
+      background-color: $popover-background;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1);
+      border-radius: 3px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 22px;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
+  .bs-popover-right .arrow::after {
+    border-right-color: $popover-background;
+  }
+
+  .bs-popover-top .arrow::after {
+    border-top-color: $popover-background;
+  }
+
+  .bs-popover-left .arrow::after {
+    border-left-color: $popover-background;
+  }
+
+  .bs-popover-bottom .arrow::after {
+    border-bottom-color: $popover-background;
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Flash Alerts */
+  /*-----------------------------------------------------------------------------------*/
+
+  .alert {
+    &.alert-success {
+      border-radius: 3px;
+      background-color: $ffi-primary-green;
+      color: #fff;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    &.alert-primary {
+      border-radius: 3px;
+      background-color: $ffi-primary-blue;
+      color: #fff;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    &.alert-warning {
+      border-radius: 3px;
+      background-color: $ffi-primary-orange;
+      color: #fff;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    &.alert-danger {
+      border-radius: 3px;
+      background-color: $ffi-primary-red;
+      color: #fff;
+      font-family: $secondary-font;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Vertical Nav */
+  /*-----------------------------------------------------------------------------------*/
+
+  nav {
+    &.vertical-nav {
+      background-color: #fff;
+      box-shadow: 0 1px 3px 0 rgba(0,0,0,0.04);
+      padding: 10px;
+      text-align: left;
+
+      a {
+        font-size: 16px;
+        font-family: $primary-font;
+        line-height: 24px;
+      }
+
+      .active {
+        color: $ffi-primary-text-color;
+        font-family: $secondary-font;
+      }
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Modal */
+  /*-----------------------------------------------------------------------------------*/
+
+  .modal-title {
+    font-family: $secondary-font;
+    line-height: 1.5;
+    color: $ffi-dark-grey;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .modal-body {
+    p {
+      font-size: 14px;
+      line-height: 22px;
+      color: $ffi-secondary-text-color;
+      font-family: $primary-font;
+    }
+  }
+
+  .modal-footer {
+    justify-content: flex-start;
+
+    button {
+      margin-right: 25px;
+    }
+  }
+}
