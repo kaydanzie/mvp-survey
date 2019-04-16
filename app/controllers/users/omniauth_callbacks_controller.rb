@@ -2,7 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # This needs to run even if user is not logged in, redirects after login
   skip_before_action :require_login, only: :google_oauth2
 
-  # rubocop:disable Metrics/AbcSize, Metrics/LineLength
+  # rubocop:disable Metrics/AbcSize
   def google_oauth2
     @user = User.from_omniauth(request.env['omniauth.auth'])
 
@@ -12,8 +12,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # Removes :extra as it can overflow some session stores
       session['devise.google_data'] = request.env['omniauth.auth'].except(:extra)
-      redirect_to user_google_oauth2_omniauth_authorize_url, alert: @user.errors.full_messages.join("\n")
+      redirect_to root_url, flash: { error: @user.errors[:email].first }
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/LineLength
+  # rubocop:enable Metrics/AbcSize
 end
