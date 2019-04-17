@@ -5,7 +5,9 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Role</th>
+      <% if current_user.super_admin? %>
+        <th scope="col">Role</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -20,8 +22,6 @@
               <%= user_form.select :role, User::ROLES.map { |r| [r.titleize, r] }, {}, onchange: "this.form.submit();", class: "form-control custom-select" %>
             <% end %>
           </td>
-        <% else %>
-          <td><%= u.role.titleize %></td>
         <% end %>
       </tr>
     <% end %>
