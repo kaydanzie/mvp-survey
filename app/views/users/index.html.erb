@@ -14,7 +14,7 @@
   <tbody>
     <% @users.each do |u| %>
       <tr>
-        <td><%= [u.first_name, u.last_name].join(" ") %></td>
+        <td><%= full_name(u) %></td>
         <td><%= u.email %></td>
         <% if current_user.super_admin? %>
           <td class="form-group">
