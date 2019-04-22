@@ -24,4 +24,25 @@ RSpec.describe ApplicationController do
       expect(controller.require_login).to be_nil
     end
   end
+
+  describe '#authorize_super_admin' do
+    it 'returns nil if super admin' do
+      # Arrange
+      sign_in create(:super_admin)
+
+      # Assert
+      expect(controller.authorize_super_admin).to be_nil
+    end
+
+    it 'shows error unless super admin' do
+      # Assert I
+      expect(controller).to receive(:redirect_to).with(root_url)
+
+      # Act
+      controller.authorize_super_admin
+
+      # Assert II
+      expect(controller).to set_flash[:error].to(/must be an admin/)
+    end
+  end
 end
