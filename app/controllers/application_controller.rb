@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
   # rubocop:enable Style/GuardClause
+
+  def authorize_super_admin
+    return if current_user.super_admin?
+    flash[:error] = "You must be an admin to view this resource."
+    redirect_to root_url
+  end
 end
