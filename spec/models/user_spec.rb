@@ -17,4 +17,10 @@ RSpec.describe User do
       expect(user.errors[:email]).not_to be_empty
     end
   end
+
+  it 'sets role to "employee" after creation' do
+    user = build(:user, role: nil)
+    expect(user).to receive(:initialize_role).and_call_original
+    expect { user.save }.to change { user.role }.to("employee")
+  end
 end
