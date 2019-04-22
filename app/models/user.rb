@@ -5,9 +5,10 @@ class User < ApplicationRecord
   after_create :initialize_role
   validate :ffi_email_address?
 
-  # Waits until user logs in with a valid FFI email address before setting role
+  # Waits until user logs in with a valid FFI email address before setting role, unless
+  # they already have a role
   def initialize_role
-    update(role: "employee")
+    update(role: "employee") unless role
   end
 
   def ffi_email_address?
