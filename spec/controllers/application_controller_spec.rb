@@ -45,4 +45,33 @@ RSpec.describe ApplicationController do
       expect(controller).to set_flash[:error].to(/must be an admin/)
     end
   end
+
+  describe '#authorize_user' do
+    it 'returns nil if user has valid role' do
+      user = create(:user)
+
+      User::ROLES.each do |role|
+        # Arrange
+        user.update(role: role)
+        sign_in user
+
+        # Assert
+        expect(controller.authorize_user).to be_nil, "expected #{role} to be a valid role"
+      end
+    end
+
+    it 'shows error if invalid role' do
+      # Arrange
+      sign_in create(:user, role: "Goat")
+
+      # Assert I
+      expect(controller).to receive(:redirect_to).with(root_url)
+
+      # Act
+      controller.authorize_user
+
+      # Assert II
+      expect(controller).to set_flash[:error].to(/must have a valid user role/)
+    end
+  end
 end
