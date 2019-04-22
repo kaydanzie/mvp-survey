@@ -60,4 +60,21 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.after_initialize do
+    SwitchUser.setup do |config|
+      # provider may be :devise, :authlogic, :clearance, :restful_authentication, :sorcery, or :session
+      config.provider = :devise
+
+      # available_users is a hash,
+      # key is the model name of user (:user, :admin, or any name you use),
+      # value is a block that return the users that can be switched.
+      config.available_users = { user: -> { User.switch_user_roles } }
+
+      # available_users_names is a hash,
+      # keys in this hash should match a key in the available_users hash
+      # value is the column name which will be displayed in select box
+      config.available_users_names = { user: :first_name }
+    end
+  end
 end

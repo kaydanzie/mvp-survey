@@ -1,1 +1,6 @@
 <h1>Welcome to MVP Survey!</h1>
+
+<% if Rails.env.development? %>
+  <p>Switch Users:</p>
+  <%= switch_user_select class: 'form-control' %>
+<% end %>

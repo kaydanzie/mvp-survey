@@ -1,5 +1,24 @@
 class User < ApplicationRecord
+  ROLES = ['employee', 'super admin'].freeze
   devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
+
+  after_create :initialize_role
+  validate :ffi_email_address?
+
+  # Waits until user logs in with a valid FFI email address before setting role, unless
+  # they already have a role
+  def initialize_role
+    update(role: "employee") unless role
+  end
+
+  def ffi_email_address?
+    has_ffi_email = email.split('@')[1] == 'formulafolios.com'
+    errors.add(:email, "Please log in with an FFI email address.") unless has_ffi_email
+  end
+
+  def super_admin?
+    role == "super admin"
+  end
 
   def self.from_omniauth(auth)
     find_by(provider: auth.provider, uid: auth.uid) || create_from_auth(auth)
@@ -13,5 +32,11 @@ class User < ApplicationRecord
       last_name: auth.info.last_name,
       email: auth.info.email
     )
+  end
+
+  # Utilized in development only
+  def self.switch_user_roles
+    # Users are created in db/seeds.rb
+    User.where(first_name: ROLES.map(&:titleize))
   end
 end
