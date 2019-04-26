@@ -1,14 +1,16 @@
 class User < ApplicationRecord
+  OFFICES = ['Grand Rapids', 'Costa Mesa', 'Other/Remote'].freeze
   ROLES = ['employee', 'super admin'].freeze
   devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  after_create :initialize_role
+  after_create :initialize_user
   validate :ffi_email_address?
 
-  # Waits until user logs in with a valid FFI email address before setting role, unless
-  # they already have a role
-  def initialize_role
+  # Waits until user logs in with a valid FFI email address before setting default attributes,
+  # unless they're already set
+  def initialize_user
     update(role: "employee") unless role
+    update(office: "Grand Rapids") unless office
   end
 
   def ffi_email_address?
