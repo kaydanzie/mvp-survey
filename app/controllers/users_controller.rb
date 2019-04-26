@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/:id
   def update
     @user.update(user_params)
-    success_msg = "#{@user.first_name}'s role successfully updated to #{@user.role.titleize}."
+    success_msg = "#{@user.first_name} successfully updated."
     redirect_to users_url, flash: { notice: success_msg }
   end
 
