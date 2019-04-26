@@ -5,11 +5,9 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <% if current_user.super_admin? %>
-        <th scope="col">Role</th>
-        <th scope="col">Office</th>
-        <th scope="col"></th>
-      <% end %>
+      <th scope="col">Role</th>
+      <th scope="col">Office</th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
@@ -18,11 +16,9 @@
       <tr>
         <td><%= full_name(u) %></td>
         <td><%= u.email %></td>
-        <% if current_user.super_admin? %>
-          <td><%= u.role.titleize %></td>
-          <td><%= u.office %></td>
-          <td><%= link_to "Edit", edit_user_path(u), remote: true %></td>
-        <% end %>
+        <td><%= u.role.titleize %></td>
+        <td><%= u.office %></td>
+        <td><%= link_to "Edit", edit_user_path(u), remote: true %></td>
       </tr>
     <% end %>
   </tbody>
