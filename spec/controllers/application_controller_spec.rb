@@ -56,7 +56,7 @@ RSpec.describe ApplicationController do
         sign_in user
 
         # Assert
-        expect(controller.authorize_user).to be_nil, "expected #{role.to_s} to be a valid role"
+        expect(controller.authorize_user).to be_nil, "expected #{role} to be a valid role"
       end
     end
 

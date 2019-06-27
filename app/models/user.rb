@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   OFFICES = ['Grand Rapids', 'Costa Mesa', 'Other/Remote'].freeze
-  ROLES = [:employee, :admin].freeze
+  ROLES = ['employee', 'admin'].freeze
 
   devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
   after_create :initialize_user
@@ -39,6 +39,6 @@ class User < ApplicationRecord
   # Utilized in development only
   def self.switch_user_roles
     # Users are created in db/seeds.rb
-    User.where(first_name: ROLES.map { |r| r.to_s.titleize } )
+    User.where(first_name: ROLES.map(&:titleize) )
   end
 end
