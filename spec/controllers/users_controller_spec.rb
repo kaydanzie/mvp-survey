@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController do
-  let(:admin) { create(:super_admin) }
+  let(:admin) { create(:admin) }
+
   before { sign_in admin }
 
   it 'renders index' do

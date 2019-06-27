@@ -18,9 +18,19 @@ RSpec.describe User do
     end
   end
 
-  it 'sets role to "employee" after creation' do
-    user = build(:user, role: nil)
-    expect(user).to receive(:initialize_role).and_call_original
-    expect { user.save }.to change { user.role }.to("employee")
+  describe '#initialize_user' do
+    let(:user) { build(:user, role: nil, office: nil) }
+
+    before {
+      allow(user).to receive(:initialize_user).and_call_original
+    }
+
+    it 'sets role to "employee" after creation' do
+      expect { user.save }.to change(user, :role).to("employee")
+    end
+
+    it 'sets office to "Grand Rapids" after creation' do
+      expect { user.save }.to change(user, :office).to("Grand Rapids")
+    end
   end
 end

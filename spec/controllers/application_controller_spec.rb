@@ -25,24 +25,25 @@ RSpec.describe ApplicationController do
     end
   end
 
-  describe '#authorize_super_admin' do
-    it 'returns nil if super admin' do
+  describe '#authorize_admin' do
+    it 'returns nil if admin' do
       # Arrange
-      sign_in create(:super_admin)
+      sign_in create(:admin)
 
       # Assert
-      expect(controller.authorize_super_admin).to be_nil
+      expect(controller.authorize_admin).to be_nil
     end
 
-    it 'shows error unless super admin' do
-      # Assert I
-      expect(controller).to receive(:redirect_to).with(root_url)
+    it 'shows error unless admin' do
+      # Arrange
+      allow(controller).to receive(:redirect_to)
 
       # Act
-      controller.authorize_super_admin
+      controller.authorize_admin
 
       # Assert II
       expect(controller).to set_flash[:error].to(/must be an admin/)
+      expect(controller).to have_received(:redirect_to).with(root_url)
     end
   end
 
@@ -63,15 +64,14 @@ RSpec.describe ApplicationController do
     it 'shows error if invalid role' do
       # Arrange
       sign_in create(:user, role: "Goat")
-
-      # Assert I
-      expect(controller).to receive(:redirect_to).with(root_url)
+      allow(controller).to receive(:redirect_to)
 
       # Act
       controller.authorize_user
 
       # Assert II
       expect(controller).to set_flash[:error].to(/must have a valid user role/)
+      expect(controller).to have_received(:redirect_to).with(root_url)
     end
   end
 end

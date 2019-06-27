@@ -1,3 +1,7 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
 # Based off: https://gist.github.com/jhass/a5ae80d87f18e53e7b56
 AllCops:
   Exclude:
@@ -6,7 +10,6 @@ AllCops:
     - 'db/**/*'
     - 'script/**/*'
     - 'Guardfile'
-require: rubocop-performance
 
 Rails:
   Enabled: true
@@ -158,3 +161,20 @@ Style/ClassAndModuleChildren:
 
 Style/Lambda:
   EnforcedStyle: literal
+
+# Custom configurations for RSpec:
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/DescribedClass:
+  EnforcedStyle: explicit
+
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - without
+    - for

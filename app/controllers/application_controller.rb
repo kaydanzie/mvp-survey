@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
-  def authorize_super_admin
-    return if current_user&.super_admin?
+  def authorize_admin
+    return if current_user&.admin?
 
     flash[:error] = "You must be an admin to view this resource."
     redirect_to root_url

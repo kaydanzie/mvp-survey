@@ -5,9 +5,9 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <% if current_user.super_admin? %>
-        <th scope="col">Role</th>
-      <% end %>
+      <th scope="col">Role</th>
+      <th scope="col">Office</th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
@@ -16,14 +16,12 @@
       <tr>
         <td><%= full_name(u) %></td>
         <td><%= u.email %></td>
-        <% if current_user.super_admin? %>
-          <td class="form-group">
-            <%= form_with model: u, local: true do |user_form| %>
-              <%= user_form.select :role, User::ROLES.map { |r| [r.titleize, r] }, {}, onchange: "this.form.submit();", class: "form-control custom-select" %>
-            <% end %>
-          </td>
-        <% end %>
+        <td><%= u.role.titleize %></td>
+        <td><%= u.office %></td>
+        <td><%= link_to "Edit", edit_user_path(u), remote: true %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="modal fade" id="user-modal" tabindex="-1" role="dialog"></div>

@@ -7,9 +7,9 @@ FactoryBot.define do
     role { 'employee' }
     email { 'kadams@formulafolios.com' }
 
-    factory :super_admin do
-      role { 'super admin' }
-      email { 'super_admin@formulafolios.com' }
+    factory :admin do
+      role { 'admin' }
+      email { 'admin@formulafolios.com' }
     end
   end
 end
