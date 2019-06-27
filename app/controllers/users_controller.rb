@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:update, :edit]
-  before_action :authorize_super_admin
+  before_action :authorize_admin
 
   # GET /users
   def index

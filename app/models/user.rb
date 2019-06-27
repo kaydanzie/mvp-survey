@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   OFFICES = ['Grand Rapids', 'Costa Mesa', 'Other/Remote'].freeze
-  ROLES = ['employee', 'super admin'].freeze
-  devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
+  ROLES = [:employee, :admin].freeze
 
+  devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
   after_create :initialize_user
   validate :ffi_email_address?
 
@@ -18,8 +18,8 @@ class User < ApplicationRecord
     errors.add(:email, "Please log in with an FFI email address.") unless has_ffi_email
   end
 
-  def super_admin?
-    role == "super admin"
+  def admin?
+    role == "admin"
   end
 
   def self.from_omniauth(auth)
@@ -39,6 +39,6 @@ class User < ApplicationRecord
   # Utilized in development only
   def self.switch_user_roles
     # Users are created in db/seeds.rb
-    User.where(first_name: ROLES.map(&:titleize))
+    User.where(first_name: ROLES.map { |r| r.to_s.titleize } )
   end
 end
