@@ -23,7 +23,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.clean
   end
 
