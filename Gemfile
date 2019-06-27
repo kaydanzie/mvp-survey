@@ -26,7 +26,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Static code analysis
 gem 'rubocop'
-gem 'rubocop-performance'
+gem 'rubocop-rails'
+gem 'rubocop-rspec'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
