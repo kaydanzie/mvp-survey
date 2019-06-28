@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :set_user, only: [:update, :edit]
-  before_action :authorize_admin
 
   # GET /users
   def index
@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     success_msg = "#{@user.first_name} successfully updated."
     redirect_to users_url, flash: { notice: success_msg }
   end
+
+  private
 
   def set_user
     @user = User.find(params[:id])
