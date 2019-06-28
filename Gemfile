@@ -32,7 +32,8 @@ gem 'rubocop-rspec'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# For managing users and authentication
+# For managing user authentication and authorization
+gem 'cancancan'
 gem 'devise'
 # OmniAuth Google OAuth2 Strategy
 gem 'omniauth-google-oauth2', '~> 0.6.0'
