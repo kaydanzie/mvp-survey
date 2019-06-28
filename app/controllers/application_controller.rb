@@ -8,18 +8,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
-  # Make sure they have a valid user role
-  def authorize_user
-    return if User::ROLES.include?(current_user&.role)
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
 
-    flash[:error] = "You must have a valid user role to view this resource."
-    redirect_to root_url
-  end
-
-  def authorize_admin
-    return if current_user&.admin?
-
-    flash[:error] = "You must be an admin to view this resource."
-    redirect_to root_url
+    # For ajax requests, such as clicking modal links
+    if request.xhr?
+      render js: "window.location = '#{root_url}'"
+    else
+      redirect_to root_url
+    end
   end
 end
