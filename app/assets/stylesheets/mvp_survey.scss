@@ -4,10 +4,7 @@
 body.ffi-default-theme {
   background-color: #FBFBFD;
 
-  // Needs some space between navbar and headings
-  h1, h2, h3, h4 {
-    margin-top: 1.5rem;
-  }
+  h1 { font-size: 30px; }
 
   // Links inside paragraph tags should be same size as rest of text
   p a {
