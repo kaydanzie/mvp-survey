@@ -1,0 +1,9 @@
+<div clas="row">
+  <h1>New Survey</h1>
+</div>
+
+<div class="row">
+  <%= render 'form', survey: @survey %>
+</div>
+
+<%= link_to 'Back', surveys_path, class: "btn btn-outline-primary" %>
