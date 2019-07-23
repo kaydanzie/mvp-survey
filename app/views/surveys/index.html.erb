@@ -11,16 +11,13 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th colspan="2"></th>
         </tr>
       </thead>
 
       <tbody>
         <% @surveys.each do |survey| %>
           <tr>
-            <td><%= survey.name %></td>
-            <td><%= link_to 'Show', survey %></td>
-            <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+            <td><%= link_to survey.name, survey %></td>
           </tr>
         <% end %>
       </tbody>
