@@ -22,6 +22,10 @@ class User < ApplicationRecord
     role == "admin"
   end
 
+  def employee?
+    role == "employee"
+  end
+
   def self.from_omniauth(auth)
     find_by(provider: auth.provider, uid: auth.uid) || create_from_auth(auth)
   end

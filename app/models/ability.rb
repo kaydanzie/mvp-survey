@@ -9,6 +9,11 @@ class Ability
     # Anyone can view homepage
     can :read, :home
 
+    employee_abilities if user.employee?
     can :manage, :all if user.admin?
+  end
+
+  def employee_abilities
+    can :read, Survey
   end
 end
