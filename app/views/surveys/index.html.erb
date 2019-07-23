@@ -1,7 +1,7 @@
 <div class="row mt-3">
   <div class="col">
     <h1 class="d-inline">Surveys</h1>
-    <%= link_to 'New Survey', new_survey_path, class: 'btn btn-secondary float-right m-3' if current_user.admin? %>
+    <%= link_to 'New Survey', new_survey_path, class: 'btn btn-secondary float-right m-3' if can? :create, Survey %>
   </div>
 </div>
 
@@ -11,7 +11,7 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th colspan="3"></th>
+          <th colspan="2"></th>
         </tr>
       </thead>
 
@@ -21,7 +21,6 @@
             <td><%= survey.name %></td>
             <td><%= link_to 'Show', survey %></td>
             <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-            <td><%= link_to 'Delete', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
