@@ -1,4 +1,6 @@
 class NominationsController < ApplicationController
+  load_and_authorize_resource
+
   # POST /nominations
   def create
     params[:nomination][:user_id] = current_user.id
