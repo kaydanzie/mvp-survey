@@ -11,6 +11,7 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -18,6 +19,7 @@
         <% @surveys.each do |survey| %>
           <tr>
             <td><%= link_to survey.name, survey %></td>
+            <td><%= link_to "Vote", nominate_survey_path(survey) %></td>
           </tr>
         <% end %>
       </tbody>
