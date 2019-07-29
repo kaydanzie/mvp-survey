@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :update, :edit]
   resources :surveys do
-    get 'nominate', to: 'surveys#nominate', on: :member
+    get 'nominate', to: 'nominations#new', on: :member
   end
 
   resources :nominations, only: :create

@@ -1,5 +1,9 @@
 class NominationsController < ApplicationController
   load_and_authorize_resource
+  before_action :set_survey
+
+  # GET /surveys/1/nominate
+  def new; end
 
   # POST /nominations
   def create
@@ -10,12 +14,18 @@ class NominationsController < ApplicationController
       if @nomination.save
         format.html { redirect_to surveys_path, notice: 'Successfully submitted nomination.' }
       else
-        format.html { render 'surveys/nominate' }
+        format.html { render :new }
       end
     end
   end
 
   private
+
+  def set_survey
+    # Nomination always will have a survey, either through an existing nomination or from the params
+    survey_id = @nomination&.survey_id || params[:id]
+    @survey = Survey.find(survey_id)
+  end
 
   def nomination_params
     params.require(:nomination).permit(:user_id, :survey_id, :comments, :nominee_id)
