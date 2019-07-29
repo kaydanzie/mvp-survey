@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :surveys do
     get 'nominate', to: 'surveys#nominate', on: :member
   end
+
+  resources :nominations, only: :create
 end
