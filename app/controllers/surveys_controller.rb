@@ -49,6 +49,11 @@ class SurveysController < ApplicationController
     end
   end
 
+  # GET /surveys/1/nominate
+  def nominate
+    @nomination = Nomination.new
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.
