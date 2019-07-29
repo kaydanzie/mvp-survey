@@ -22,6 +22,10 @@ class User < ApplicationRecord
     role == "admin"
   end
 
+  def employee?
+    role == "employee"
+  end
+
   def self.from_omniauth(auth)
     find_by(provider: auth.provider, uid: auth.uid) || create_from_auth(auth)
   end
@@ -39,6 +43,6 @@ class User < ApplicationRecord
   # Utilized in development only
   def self.switch_user_roles
     # Users are created in db/seeds.rb
-    where(first_name: ROLES.map(&:titleize))
+    User.all
   end
 end

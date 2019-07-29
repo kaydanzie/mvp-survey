@@ -21,12 +21,12 @@ RSpec.describe "User management", type: :request do
     let(:user_params) { { user: { office: "Costa Mesa" } } }
 
     it 'redirects to index' do
-      put "/users/#{admin.id}", params: user_params
+      put user_path(admin), params: user_params
       expect(response).to redirect_to(users_url)
     end
 
     it 'displays flash notice' do
-      put "/users/#{admin.id}", params: user_params
+      put user_path(admin), params: user_params
       expect(flash[:notice]).to match("successfully updated")
     end
   end

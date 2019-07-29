@@ -4,6 +4,7 @@
     <title>MVP Survey</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= favicon_link_tag asset_path('ffi-favicon.png'), rel: 'icon', type: 'image/x-icon' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,7 +18,7 @@
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/flash_notices' %>
 
-    <div class="container">
+    <div class="container-fluid">
       <%= yield %>
     </div>
   </body>
