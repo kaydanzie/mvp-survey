@@ -14,6 +14,7 @@ class Ability
   end
 
   def employee_abilities
-    can :read, Survey
+    can [:read, :nominate], Survey
+    can :create, Nomination
   end
 end
