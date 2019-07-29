@@ -1,3 +1,4 @@
+Survey.destroy_all
 User.destroy_all
 
 # Users #
