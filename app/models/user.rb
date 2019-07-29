@@ -6,6 +6,8 @@ class User < ApplicationRecord
   after_create :initialize_user
   validate :ffi_email_address?
 
+  scope :from_office, ->(office) { where(office: office) }
+
   # Waits until user logs in with a valid FFI email address before setting default attributes,
   # unless they're already set
   def initialize_user
@@ -24,6 +26,10 @@ class User < ApplicationRecord
 
   def employee?
     role == "employee"
+  end
+
+  def full_name
+    [first_name, last_name].join(" ")
   end
 
   def self.from_omniauth(auth)
