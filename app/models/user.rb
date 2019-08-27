@@ -51,4 +51,8 @@ class User < ApplicationRecord
     # Users are created in db/seeds.rb
     User.all
   end
+
+  def voted?(survey)
+    nominations.find_by(survey: survey).present?
+  end
 end
