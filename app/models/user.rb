@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   scope :from_office, ->(office) { where(office: office) }
 
+  has_many :nominations, dependent: :nullify
+  has_many :received_nominations, class_name: "Nomination", foreign_key: :nominee_id,
+                                  dependent: :nullify, inverse_of: :nominee
+
   # Waits until user logs in with a valid FFI email address before setting default attributes,
   # unless they're already set
   def initialize_user
