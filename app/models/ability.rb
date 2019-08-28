@@ -8,6 +8,7 @@ class Ability
 
     # Anyone can view homepage
     can :read, :home
+    return if user.role.blank?
 
     employee_abilities if user.employee?
     can :manage, :all if user.admin?
