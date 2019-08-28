@@ -1,38 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe "User authorization", type: :request do
-  context 'when not logged in' do
-    it 'redirects to home page' do
-      get users_url
-      expect(response).to redirect_to(root_url)
-    end
+  # Logged out user
+  describe "Guest" do
+    before { logout }
 
-    it 'displays flash error message' do
-      get users_url
-      expect(flash[:error]).to match("must be logged in")
-    end
+    context 'without permission' do
+      it 'redirects to home page' do
+        get surveys_path
+        expect(response).to redirect_to(root_path)
+      end
 
-    # Anyone should be able to view the home page
-    it 'renders home page' do
-      get root_url
-      expect(response).to be_successful
-      expect(response.body).to include("Welcome")
+      it 'displays error message' do
+        get users_path
+        expect(controller).to set_flash[:error].to(/You must be logged in/)
+      end
     end
   end
 
-  context 'when not authorized' do
-    let(:non_admin) { create(:user, role: 'employee') }
+  describe "No Role" do
+    before { sign_in create(:user, role: "") }
 
-    before { sign_in non_admin }
+    context 'without permission' do
+      it 'redirects to home page' do
+        get users_path
+        expect(response).to redirect_to(root_path)
+      end
 
-    it 'redirects to home page' do
-      get edit_user_url(non_admin)
-      expect(response).to redirect_to(root_url)
+      it 'displays error message' do
+        get surveys_path
+        expect(controller).to set_flash[:error].to(/not authorized/)
+      end
     end
+  end
 
-    it 'displays flash error message' do
-      get edit_user_url(non_admin)
-      expect(flash[:error]).to match("not authorized")
+  describe "Admin" do
+    before { sign_in create(:admin) }
+
+    it 'renders page' do
+      get edit_user_path(User.last), xhr: true
+      expect(response).to be_successful
     end
   end
 end
