@@ -42,4 +42,25 @@ RSpec.describe "User authorization", type: :request do
       expect(response).to be_successful
     end
   end
+
+  describe "Employee" do
+    before { sign_in create(:user) }
+
+    it 'renders page' do
+      get surveys_path
+      expect(response).to be_successful
+    end
+
+    context 'without permission' do
+      it 'redirects to home page' do
+        get edit_user_path(User.last)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'displays error message' do
+        get edit_user_path(User.last)
+        expect(controller).to set_flash[:error].to(/not authorized/)
+      end
+    end
+  end
 end
