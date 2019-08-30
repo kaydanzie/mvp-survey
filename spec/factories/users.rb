@@ -11,5 +11,9 @@ FactoryBot.define do
       role { 'admin' }
       email { 'admin@formulafolios.com' }
     end
+
+    factory :random_user do
+      sequence(:email) { |n| "ffi_#{n}@formulafolios.com" }
+    end
   end
 end
