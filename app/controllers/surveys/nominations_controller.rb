@@ -1,11 +1,11 @@
-class NominationsController < ApplicationController
+class Surveys::NominationsController < ApplicationController
   load_and_authorize_resource
   before_action :set_survey
 
-  # GET /surveys/1/nominate
+  # GET /surveys/:survey_id/nominate
   def new; end
 
-  # POST /nominations
+  # POST /surveys/:survey_id/nominations
   def create
     params[:nomination][:user_id] = current_user.id
     @nomination = Nomination.new(nomination_params)
@@ -22,9 +22,7 @@ class NominationsController < ApplicationController
   private
 
   def set_survey
-    # Nomination always will have a survey, either through an existing nomination or from the params
-    survey_id = @nomination&.survey_id || params[:id]
-    @survey = Survey.find(survey_id)
+    @survey = Survey.find(params[:survey_id])
   end
 
   def nomination_params
