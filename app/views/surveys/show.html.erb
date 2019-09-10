@@ -11,7 +11,7 @@
         <% if @my_nomination %>
           <p>You nominated <%= @my_nomination.nominee.full_name %></p>
         <% else %>
-          <p>You haven't nominated anyone for this survey, <%= link_to "vote here", nominate_survey_path(@survey) %>!</p>
+          <p>You haven't nominated anyone for this survey, <%= link_to "vote here", survey_nomination_path(@survey) %>!</p>
         <% end %>
       </div>
     </div>
