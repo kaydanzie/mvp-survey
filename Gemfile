@@ -25,7 +25,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Static code analysis
-gem 'rubocop'
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
 
@@ -73,8 +72,6 @@ group :test do
   gem 'shoulda', '~> 3.5'
   # Use Factory Bot instead of fixtures
   gem 'factory_bot_rails'
-  # Clear test database before running tests
-  gem 'database_cleaner'
 
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
@@ -82,4 +79,7 @@ group :test do
 
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
+
+  # Adds more assertions for controller tests
+  gem 'rails-controller-testing'
 end
