@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   # GET /users/:id/edit
   def edit; end
 
+  def show; end
+
   # PATCH/PUT /users/:id
   def update
     @user.update(user_params)
