@@ -33,4 +33,18 @@ RSpec.describe User do
       expect { user.save }.to change(user, :office).to("Grand Rapids")
     end
   end
+
+  describe '#surveys_with_nominations' do
+    let(:user) { create(:user) }
+
+    it 'returns surveys user was nominated for' do
+      nominated_survey = create(:nomination, nominee: user).survey
+      expect(user.surveys_with_nominations).to include(nominated_survey)
+    end
+
+    it "doesn't return surveys without nominations" do
+      survey_without_nomination = create(:survey)
+      expect(user.surveys_with_nominations).not_to include(survey_without_nomination)
+    end
+  end
 end
