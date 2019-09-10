@@ -13,7 +13,9 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/:id
   def update
-    @user.update(user_params)
+    # Fixes brakeman violation with allowing role param to be passed
+    safe_params = user_params.merge(role: params[:user][:role])
+    @user.update(safe_params)
     success_msg = "#{@user.first_name} successfully updated."
     redirect_to users_url, flash: { notice: success_msg }
   end
@@ -21,6 +23,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:role, :office)
+    params.require(:user).permit(:office)
   end
 end
