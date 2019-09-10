@@ -11,7 +11,7 @@ RSpec.describe "Nominations", type: :request do
   end
 
   describe "#create" do
-    let(:params) { { nomination: { nominee_id: create(:random_user).id } } }
+    let(:params) { { nomination: { nominee_id: create(:user).id } } }
 
     it "re-renders form on error" do
       params[:nomination][:nominee_id] = nil
