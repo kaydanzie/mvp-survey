@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_052500) do
+ActiveRecord::Schema.define(version: 2019_07_29_031359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nominations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "nominee_id"
+    t.text "comments"
+    t.bigint "survey_id"
+    t.index ["nominee_id"], name: "index_nominations_on_nominee_id"
+    t.index ["survey_id"], name: "index_nominations_on_survey_id"
+    t.index ["user_id"], name: "index_nominations_on_user_id"
+  end
 
   create_table "surveys", force: :cascade do |t|
     t.string "name"
@@ -40,4 +50,7 @@ ActiveRecord::Schema.define(version: 2019_06_28_052500) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "nominations", "surveys"
+  add_foreign_key "nominations", "users"
+  add_foreign_key "nominations", "users", column: "nominee_id"
 end

@@ -7,6 +7,16 @@
     </div>
 
     <div class="row justify-content-center mt-4">
+      <div class="col text-center">
+        <% if @my_nomination %>
+          <p>You nominated <%= @my_nomination.nominee.full_name %></p>
+        <% else %>
+          <p>You haven't nominated anyone for this survey, <%= link_to "vote here", survey_nomination_path(@survey) %>!</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
       <div class="col text-center"><%= link_to 'Edit', edit_survey_path(@survey), class: "btn btn-secondary" if can? :edit, @survey %></div>
     </div>
 

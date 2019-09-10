@@ -1,3 +1,4 @@
+Survey.destroy_all
 User.destroy_all
 
 # Users #
@@ -10,3 +11,5 @@ User.find_or_create_by(email: "employee_mi@formulafolios.com")
     .update(first_name: "MI Employee", role: "employee", office: "Grand Rapids")
 User.find_or_create_by(email: "employee_remote@formulafolios.com")
     .update(first_name: "Remote", last_name: "Employee", role: "employee", office: "Other/Remote")
+
+Survey.create(name: "July Survey 2019")

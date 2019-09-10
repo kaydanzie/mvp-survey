@@ -6,6 +6,14 @@ class User < ApplicationRecord
   after_create :initialize_user
   validate :ffi_email_address?
 
+  # Users that are able to be nominated by the current user
+  # Must be: from the same office, not self
+  scope :nominatable, ->(user) { where(office: user.office).where.not(id: user.id) }
+
+  has_many :nominations, dependent: :nullify
+  has_many :received_nominations, class_name: "Nomination", foreign_key: :nominee_id,
+                                  dependent: :nullify, inverse_of: :nominee
+
   # Waits until user logs in with a valid FFI email address before setting default attributes,
   # unless they're already set
   def initialize_user
@@ -26,6 +34,10 @@ class User < ApplicationRecord
     role == "employee"
   end
 
+  def full_name
+    [first_name, last_name].join(" ")
+  end
+
   def self.from_omniauth(auth)
     find_by(provider: auth.provider, uid: auth.uid) || create_from_auth(auth)
   end
@@ -44,5 +56,9 @@ class User < ApplicationRecord
   def self.switch_user_roles
     # Users are created in db/seeds.rb
     User.all
+  end
+
+  def voted?(survey)
+    nominations.find_by(survey: survey).present?
   end
 end

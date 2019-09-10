@@ -7,7 +7,9 @@ class SurveysController < ApplicationController
   end
 
   # GET /surveys/1
-  def show; end
+  def show
+    @my_nomination = current_user.nominations.find_by(survey: @survey)
+  end
 
   # GET /surveys/new
   def new

@@ -13,19 +13,11 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-# Clears database before running tests
-DatabaseCleaner.strategy = :truncation
-
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActionController, type: :request
-  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
-
-  config.before do
-    DatabaseCleaner.clean
-  end
 
   # Provides one-liners that test common Rails functionality
   Shoulda::Matchers.configure do |config|
@@ -39,9 +31,6 @@ RSpec.configure do |config|
   config.fixture_path = 'spec/factories'
   config.file_fixture_path = 'spec/factories/files'
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
   config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
