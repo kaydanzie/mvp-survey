@@ -10,8 +10,23 @@ RSpec.describe "Nominations", type: :request do
     expect(response).to have_http_status(:ok)
   end
 
-  it "re-renders form on error" do
-    post survey_nominations_path(survey), params: { nomination: { nominee_id: nil } }
-    expect(response).to render_template(:new)
+  describe "#create" do
+    let(:params) { { nomination: { nominee_id: create(:random_user).id } } }
+
+    it "re-renders form on error" do
+      params[:nomination][:nominee_id] = nil
+      post survey_nominations_path(survey), params: params
+      expect(response).to render_template(:new)
+    end
+
+    it "redirects to surveys page" do
+      post survey_nominations_path(survey), params: params
+      expect(response).to redirect_to(surveys_path)
+    end
+
+    it "creates a record" do
+      expect { post survey_nominations_path(survey), params: params }
+        .to change(Nomination, :count).by(1)
+    end
   end
 end
