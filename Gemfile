@@ -80,6 +80,6 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
 
-  # Adds more assertions for controller tests
+  # Adds more assertions for request (controller) specs
   gem 'rails-controller-testing'
 end
