@@ -38,6 +38,15 @@ class User < ApplicationRecord
     [first_name, last_name].join(" ")
   end
 
+  def voted?(survey)
+    nominations.find_by(survey: survey).present?
+  end
+
+  # Relation containing all surveys where the user got at least 1 nomination
+  def surveys_with_nominations
+    Survey.where(id: received_nominations.pluck(:survey_id).uniq).order(created_at: :desc)
+  end
+
   def self.from_omniauth(auth)
     find_by(provider: auth.provider, uid: auth.uid) || create_from_auth(auth)
   end
@@ -56,9 +65,5 @@ class User < ApplicationRecord
   def self.switch_user_roles
     # Users are created in db/seeds.rb
     User.all
-  end
-
-  def voted?(survey)
-    nominations.find_by(survey: survey).present?
   end
 end
