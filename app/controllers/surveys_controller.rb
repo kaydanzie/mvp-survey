@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys
   def index
-    @surveys = Survey.all
+    @surveys = Survey.all.order(created_at: :desc)
   end
 
   # GET /surveys/1

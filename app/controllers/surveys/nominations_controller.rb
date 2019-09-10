@@ -7,7 +7,6 @@ class Surveys::NominationsController < ApplicationController
 
   # POST /surveys/:survey_id/nominations
   def create
-    params[:nomination][:user_id] = current_user.id
     @nomination = Nomination.new(nomination_params)
 
     respond_to do |format|
@@ -26,6 +25,7 @@ class Surveys::NominationsController < ApplicationController
   end
 
   def nomination_params
-    params.require(:nomination).permit(:user_id, :survey_id, :comments, :nominee_id)
+    params.require(:nomination).permit(:comments, :nominee_id)
+          .merge(user_id: current_user.id, survey_id: @survey&.id)
   end
 end

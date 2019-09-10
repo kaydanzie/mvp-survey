@@ -1,0 +1,27 @@
+<div class="row my-4">
+  <div class="col-lg-4"></div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-header"><%= @user.full_name %></div>
+
+      <div class="card-body">
+        <p class="small">Total Nominations Given: <%= @user.nominations.count %></p>
+        <% if @user.received_nominations.any? %>
+          <p class="small">Total Received Nominations: <%= @user.received_nominations.count %></p>
+
+          <% @user.surveys_with_nominations.each do |survey| %>
+            <h2><%= survey.name %></h2>
+            <ul>
+              <% @user.received_nominations.where(survey_id: survey).each do |nom| %>
+                <%= tag.li nom.comments.blank? ? "[No comment]" : "\"#{nom.comments}\"" %>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4"></div>
+</div>

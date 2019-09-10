@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User management", type: :request do
+RSpec.describe "Users", type: :request do
   let(:admin) { create(:admin) }
 
   before { sign_in admin }

@@ -5,15 +5,11 @@ FactoryBot.define do
     first_name { 'Ken' }
     last_name { 'Adams' }
     role { 'employee' }
-    email { 'kadams@formulafolios.com' }
+    sequence(:email) { |n| "ffi_#{n}@formulafolios.com" }
 
     factory :admin do
       role { 'admin' }
       email { 'admin@formulafolios.com' }
-    end
-
-    factory :random_user do
-      sequence(:email) { |n| "ffi_#{n}@formulafolios.com" }
     end
   end
 end
