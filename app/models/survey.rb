@@ -1,4 +1,9 @@
 class Survey < ApplicationRecord
   validates :name, uniqueness: true, presence: true
   has_many :nominations, dependent: :destroy
+
+  # Groups nominees together, sorts by most nominations to least
+  def grouped_nominations
+    nominations.group_by(&:nominee_id).sort_by { |_, v| v.count }.reverse
+  end
 end

@@ -1,12 +1,10 @@
-<div class="row mt-3">
+<div class="row my-3">
+  <div class="col-lg-3"></div>
+
   <div class="col">
     <h1 class="d-inline">Surveys</h1>
     <%= link_to 'New Survey', new_survey_path, class: 'btn btn-secondary float-right m-3' if can? :create, Survey %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col">
     <table class="table">
       <thead>
         <tr>
@@ -25,4 +23,6 @@
       </tbody>
     </table>
   </div>
+
+  <div class="col-lg-3"></div>
 </div>
