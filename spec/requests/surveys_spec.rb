@@ -32,5 +32,23 @@ RSpec.describe "Surveys", type: :request do
       get survey_path(survey)
       expect(response.body).to include("You nominated")
     end
+
+    it "doesn't show Employee Nominations" do
+      # Arrange
+      sign_in create(:user)
+
+      # Act
+      get survey_path(survey)
+
+      # Assert
+      expect(response.body).not_to include("Employee Nominations")
+    end
+
+    describe '#admin' do
+      it "can see Employee Nominations" do
+        get survey_path(survey)
+        expect(response.body).to include("Employee Nominations")
+      end
+    end
   end
 end
