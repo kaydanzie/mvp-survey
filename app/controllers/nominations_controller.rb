@@ -6,6 +6,7 @@ class NominationsController < ApplicationController
   def index
     # Renders form to select winner, goes to #create in WinnersController
     @nominees = @survey.uniq_nominees
+    @winner = Winner.new
   end
 
   # GET /surveys/:survey_id/nominate
