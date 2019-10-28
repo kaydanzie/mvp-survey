@@ -6,4 +6,9 @@ class Survey < ApplicationRecord
   def grouped_nominations
     nominations.group_by(&:nominee_id).sort_by { |_, v| v.count }.reverse
   end
+
+  def uniq_nominees
+    user_ids = nominations.pluck(:nominee_id).uniq
+    User.where(id: user_ids)
+  end
 end
