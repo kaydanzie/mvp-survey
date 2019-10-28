@@ -2,7 +2,7 @@
   <div class="col">
     <h1 class="text-center"><%= "#{@survey.name} Nominees" %></h1>
 
-    <%= form_with model: @winner, local: true do |form| %>
+    <%= form_with model: @winner, url: [@survey, @winner], local: true do |form| %>
       <div class="row justify-content-center">
         <div class="col-10 col-lg-4">
           <div class="form-group">
@@ -10,7 +10,7 @@
             <%= form.select :user_id, @nominees.collect { |nom| [ nom.full_name, nom.id ] }, { include_blank: 'Select a nominee for MVP' }, class: 'form-control' %>
 
             <div class="invalid-feedback">
-              <span></span>
+              <span><%= @winner.errors[:user_id].join(", ") %></span>
             </div>
           </div>
         </div>
