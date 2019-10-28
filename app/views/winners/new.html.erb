@@ -7,7 +7,7 @@
         <div class="col-10 col-lg-4">
           <div class="form-group">
             <p class="small">Select one winner from the list of nominees below.</p>
-            <%= form.select :user_id, @nominees.collect { |nom| [ nom.full_name, nom.id ] }, { include_blank: 'Select a nominee for MVP' }, class: 'form-control' %>
+            <%= form.select :user_id, @survey.uniq_nominees.collect { |nom| [ nom.full_name, nom.id ] }, { include_blank: 'Select a nominee for MVP' }, class: 'form-control' %>
 
             <div class="invalid-feedback">
               <span><%= @winner.errors[:user_id].join(", ") %></span>
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class="row justify-content-center pb-5">
+      <div class="row justify-content-center py-5">
         <div class="col-lg-2 col-sm-12 text-center"><%= form.submit 'Submit', class: 'btn btn-secondary' %></div>
         <div class="col-lg-2 col-sm-12 mt-sm-3 mt-3 mt-lg-0 text-center"><%= link_to 'Back', surveys_path, class: "btn btn-outline-secondary" %></div>
       </div>

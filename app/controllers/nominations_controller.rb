@@ -2,13 +2,6 @@ class NominationsController < ApplicationController
   load_and_authorize_resource
   before_action :set_survey
 
-  # GET /surveys/:survey_id/nominations
-  def index
-    # Renders form to select winner, goes to #create in WinnersController
-    @nominees = @survey.uniq_nominees
-    @winner = Winner.new
-  end
-
   # GET /surveys/:survey_id/nominate
   def new; end
 

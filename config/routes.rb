@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :update, :edit, :show]
   resources :surveys do
-    resources :nominations, only: [:index, :new, :create]
-    resources :winners, only: :create
+    resources :nominations, only: [:new, :create]
+    resources :winners, only: [:new, :create]
   end
 end

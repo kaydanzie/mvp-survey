@@ -2,6 +2,9 @@ class WinnersController < ApplicationController
   load_and_authorize_resource
   before_action :set_survey
 
+  # GET /surveys/:survey_id/winners/new
+  def new; end
+
   # POST /surveys/:survey_id/winners
   def create
     @winner = Winner.new(winner_params)
@@ -12,7 +15,7 @@ class WinnersController < ApplicationController
           redirect_to surveys_path, notice: "Selected #{@winner.user.full_name} as MVP!"
         }
       else
-        format.html { render 'nominations/index' }
+        format.html { render :new }
       end
     end
   end
