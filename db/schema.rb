@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_11_213235) do
+ActiveRecord::Schema.define(version: 2019_07_29_031359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_213235) do
     t.bigint "nominee_id"
     t.text "comments"
     t.bigint "survey_id"
-    t.boolean "is_winner", default: false
     t.index ["nominee_id"], name: "index_nominations_on_nominee_id"
     t.index ["survey_id"], name: "index_nominations_on_survey_id"
     t.index ["user_id"], name: "index_nominations_on_user_id"
