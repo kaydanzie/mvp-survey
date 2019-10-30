@@ -17,7 +17,7 @@
         <% @surveys.each do |survey| %>
           <tr>
             <td><%= link_to survey.name, survey %></td>
-            <td><%= link_to "Vote", new_survey_nomination_path(survey) unless current_user.voted?(survey) %></td>
+            <td><%= link_to "Vote", new_survey_nomination_path(survey) unless current_user.voted?(survey) || survey.winner %></td>
           </tr>
         <% end %>
       </tbody>
