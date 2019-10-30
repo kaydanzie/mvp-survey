@@ -1,4 +1,4 @@
-class Surveys::NominationsController < ApplicationController
+class NominationsController < ApplicationController
   load_and_authorize_resource
   before_action :set_survey
 

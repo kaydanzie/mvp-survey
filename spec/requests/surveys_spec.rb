@@ -22,15 +22,31 @@ RSpec.describe "Surveys", type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it "displays message when user hasn't nominated" do
+    it "displays link when user hasn't nominated" do
       get survey_path(survey)
-      expect(response.body).to include("You haven't nominated anyone")
+      expect(response.body).to include("Vote Here")
     end
 
     it 'displays message when user has nominated' do
+      # Arrange
       create(:nomination, survey: survey, user: admin)
+
+      # Act
       get survey_path(survey)
+
+      # Assert
       expect(response.body).to include("You nominated")
+    end
+
+    it "shows winner's name when chosen" do
+      # Arrange
+      create(:winner, survey: survey)
+
+      # Act
+      get survey_path(survey)
+
+      # Assert
+      expect(response.body).to include("The MVP this month is")
     end
 
     it "doesn't show Employee Nominations" do

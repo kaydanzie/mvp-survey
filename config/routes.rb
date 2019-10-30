@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :update, :edit, :show]
   resources :surveys do
-    get 'nominate', to: 'surveys/nominations#new', param: :survey_id, as: :nomination
-    post 'nominations', to: 'surveys/nominations#create', param: :survey_id
+    resources :nominations, only: [:new, :create]
+    resources :winners, only: [:new, :create]
   end
 end

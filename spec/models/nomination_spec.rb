@@ -1,17 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe Nomination do
-  subject(:nomination_subject) { create(:nomination) }
-
   describe '#validations' do
+    subject(:nomination_subject) { build(:nomination) }
+
     it "can't nominate self" do
       # Arrange
       user = create(:user)
-      nomination = build(:nomination, user: user, nominee: user)
+      nomination_subject.user = user
+      nomination_subject.nominee = user
 
       # Assert
-      expect(nomination).not_to be_valid
-      expect(nomination.errors[:nominee_id]).not_to be_empty
+      expect(nomination_subject).not_to be_valid
+      expect(nomination_subject.errors[:nominee_id]).not_to be_empty
+    end
+
+    it "validates no winner has been chosen" do
+      # Arrange
+      survey = create(:survey)
+      create(:winner, survey: survey)
+
+      # Act
+      nomination_subject.survey = survey
+
+      # Assert
+      expect(nomination_subject).not_to be_valid
+      expect(nomination_subject.errors[:nominee_id]).not_to be_empty
     end
 
     it { expect(nomination_subject).to validate_uniqueness_of(:survey_id).scoped_to(:user_id) }

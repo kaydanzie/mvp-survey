@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # Must be: from the same office, not self
   scope :nominatable, ->(user) { where(office: user.office).where.not(id: user.id) }
 
+  has_many :winners, dependent: :destroy
   has_many :nominations, dependent: :nullify
   has_many :received_nominations, class_name: "Nomination", foreign_key: :nominee_id,
                                   dependent: :nullify, inverse_of: :nominee

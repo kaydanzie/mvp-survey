@@ -6,26 +6,36 @@
 
     <div class="row justify-content-center mt-4">
       <div class="col text-center">
-        <% if @my_nomination %>
-          <p>You nominated <%= @my_nomination.nominee.full_name %></p>
-        <% else %>
-          <p>You haven't nominated anyone for this survey, <%= link_to "vote here", survey_nomination_path(@survey) %>!</p>
-        <% end %>
+        <p><%= nomination_message(@my_nomination, @survey) %></p>
       </div>
     </div>
+
+    <% if @survey.winner %>
+      <div class="row justify-content-center mt-4">
+        <div class="col text-center">
+          <p>The MVP this month is <%= @survey.winner.user.full_name %>!</p>
+        </div>
+      </div>
+    <% end %>
 
     <% if current_user.admin? %>
       <div class="row justify-content-center mt-4">
         <div class="col-10 col-sm-6 col-xl-3">
-          <h2>Employee Nominations</h2>
+          <h2 class="text-center">Employee Nominations</h2>
           <% @survey.grouped_nominations.each do |nominee_id, nominations| %>
-            <p><%= "#{User.find(nominee_id).full_name} (#{nominations.count} nominations)" %></p>
+            <p class="text-center"><%= "#{User.find(nominee_id).full_name} (#{nominations.count})" %></p>
             <ul>
               <% nominations.each do |nom| %>
                 <li><%= formatted_nomination(nom) %></li>
               <% end %>
             </ul>
           <% end %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-10 col-sm-6 col-xl-3 text-center">
+          <%= link_to "Pick a Winner", new_survey_winner_path(@survey), class: 'secondary-link' unless @survey.winner %>
         </div>
       </div>
     <% end %>
