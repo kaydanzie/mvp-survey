@@ -6,7 +6,7 @@ RSpec.describe "Nominations", type: :request do
   before { sign_in create(:admin) }
 
   it "renders new" do
-    get survey_nomination_path(survey)
+    get new_survey_nomination_path(survey)
     expect(response).to have_http_status(:ok)
   end
 
