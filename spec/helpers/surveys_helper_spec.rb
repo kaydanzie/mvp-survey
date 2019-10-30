@@ -16,6 +16,7 @@ RSpec.describe SurveysHelper do
     it 'returns just the user name if no comments' do
       # Arrange
       nomination.comments = ""
+
       # Act
       formatted = helper.formatted_nomination(nomination)
 
