@@ -21,7 +21,7 @@ RSpec.describe "Winners", type: :request do
 
     it "redirects to surveys page" do
       post survey_winners_path(survey), params: params
-      expect(response).to redirect_to(surveys_path)
+      expect(response).to redirect_to(survey_path(survey))
     end
 
     it "creates a record" do

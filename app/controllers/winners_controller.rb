@@ -12,7 +12,7 @@ class WinnersController < ApplicationController
     respond_to do |format|
       if @winner.save
         format.html {
-          redirect_to surveys_path, notice: "Selected #{@winner.user.full_name} as MVP!"
+          redirect_to @survey, notice: "Selected #{@winner.user.full_name} as MVP!"
         }
       else
         format.html { render :new }
