@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*
 STYLES ADAPTED FROM FFI DEFAULT DESIGN SYSTEM:
-https://projects.invisionapp.com/d/main#/console/15129591/314590797/preview
+https://www.figma.com/files/683427803334232200/team/683431939744203622/FFI-Design-System
 and FFI brand guidelines:
 https://brand.formulafolios.com/
 */
@@ -19,24 +19,87 @@ $ffi-primary-red: #F42121;
 $ffi-primary-orange: #F6AB2F;
 $ffi-primary-text-color: #191E1E;
 $ffi-secondary-text-color: #5D6A7A;
-$ffi-primary-grey: #E4E8EE;
-$ffi-secondary-grey: #B3B3B3;
-$ffi-light-grey: #EAEDF3;
-$ffi-dark-grey: #3E3F42;
-$dark-green: #2FA564;
-$dark-blue: #0032BB;
-$dark-red: #C23C24;
-$primary-font: 'Messina Sans Regular';
-$secondary-font: 'Messina Sans SemiBold';
-$tertiary-font: 'Messina Sans Light';
-$btn-border-color: #D3DBE0;
-$btn-disabled-font-color: #B8ACAC;
-$btn-disabled-bkg-color: #F5F5F5;
-$form-grey-secondary: #9D9D9D;
-$form-input-text-color: #1A1A1A;
-$form-label-small-text-color: #9EA0A5;
+$ffi-primary-grey: #909198;
+$ffi-dark-green: #2FA564;
+$ffi-dark-blue: #0032BB;
+$ffi-dark-red: #C23C24;
+$primary-font: "Messina Sans Regular";
+$secondary-font: "Messina Sans SemiBold";
+$tertiary-font: "Messina Sans Light";
+$quaternary-font: "Messina Sans Bold";
+$btn-disabled-font-color: rgba(144, 145, 152, 0.8);
+$btn-disabled-bkg-color: rgba(144, 145, 152, 0.2);
 $popover-background: #444446;
-$hover-state-modal: #1333c1;
+$success-badge-and-flash-color: #195735;
+$primary-badge-and-flash-color: #17295B;
+$warning-badge-and-flash-color: #65491C;
+$danger-badge-and-flash-color: #8D1313;
+$selection-box-background-color: #F0F1F5;
+$secondary-button-background-grey: #F1F1FB;
+$secondary-button-background-hover-grey: #E4E4F5;
+$checkbox-selected-blue: #235EFF;
+$form-group-disabled-color: #F6F6F6;
+
+/*-----------------------------------------------------------------------------------*/
+/* FFI DEFAULT FUNCTIONS */
+/*-----------------------------------------------------------------------------------*/
+@function ffi-green($opacity) {
+  @return rgba(52, 188, 114, $opacity);
+}
+
+@function ffi-blue($opacity) {
+  @return rgba(0, 59, 222, $opacity);
+}
+
+@function ffi-orange($opacity) {
+  @return rgba(246, 171, 47, $opacity);
+}
+
+@function ffi-light-blue($opacity) {
+  @return rgba(72, 137, 255, $opacity);
+}
+
+@function ffi-red($opacity) {
+  @return rgba(244, 33, 33, $opacity);
+}
+
+@function ffi-light-grey($opacity) {
+  @return rgba(144, 145, 152, $opacity);
+}
+
+@function ffi-dark-grey($opacity) {
+  @return rgba(93, 106, 122, $opacity);
+}
+
+@function ffi-black($opacity) {
+  @return rgba(25, 30, 30, $opacity);
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* FFI DEFAULT MIXINS */
+/*-----------------------------------------------------------------------------------*/
+
+// Ex: .btn-primary { @include btn-icon((("icon-name", 55px), ("send", 40px))); }
+//     .btn-secondary { @include btn-icon("back-arrow"); }
+// btn-icon can take two arguments
+// $svg (name of the svg),
+// $padding-left (optional, defaults to 50px)
+@mixin btn-icon($list) {
+  @each $svg, $padding-left in $list {
+    &.btn-#{$svg} {
+      // Set the default left padding to be 50px if not provided
+      @if not $padding-left {
+        $padding-left: 50px;
+      }
+
+      padding-left: #{$padding-left};
+      // Define each style instead of using "background" so the background-color is not overridden
+      background-image: image-url("#{$svg}.svg");
+      background-position: left 20px top 50%;
+      background-repeat: no-repeat;
+    }
+  }
+}
 
 body.ffi-default-theme {
   /*-----------------------------------------------------------------------------------*/
@@ -50,25 +113,59 @@ body.ffi-default-theme {
   /*-----------------------------------------------------------------------------------*/
 
   h1 {
-    font-size: 36px;
+    font-size: 48px;
     color: $ffi-primary-text-color;
-    line-height: 50px;
+    font-family: $primary-font;
+    line-height: 1.2;
   }
 
   h2 {
+    font-size: 36px;
+    color: $ffi-primary-text-color;
+    font-family: $primary-font;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 30px;
+    color: $ffi-primary-text-color;
+    font-family: $primary-font;
+    line-height: 1.3;
+  }
+
+  h4 {
     font-size: 22px;
     color: $ffi-primary-text-color;
-    line-height: 32px;
+    font-family: $secondary-font;
+    line-height: 1.3;
+  }
+
+  h5 {
+    font-size: 20px;
+    color: $ffi-primary-text-color;
+    font-family: $secondary-font;
+    line-height: 1.4;
+  }
+
+  h6 {
+    font-size: 18px;
+    color: $ffi-primary-text-color;
+    font-family: $quaternary-font;
+    line-height: 1.4;
   }
 
   p {
-    font-size: 18px;
-    color: $ffi-secondary-text-color;
-    line-height: 28px;
+    font-size: 16px;
+    color: $ffi-primary-text-color;
+    font-family: $primary-font;
+    line-height: 1.5;
 
     &.small {
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 14px;
+    }
+
+    &.secondary {
+      color: $ffi-secondary-text-color;
     }
   }
 
@@ -83,7 +180,7 @@ body.ffi-default-theme {
   /* BUTTON STYLES/STATES */
   /*-----------------------------------------------------------------------------------*/
 
-  /* FFI Primary. Button */
+  /* FFI Primary Green Button */
   .btn-primary {
     border-radius: 3px;
     background-color: $ffi-primary-green;
@@ -91,146 +188,111 @@ body.ffi-default-theme {
     color: #FFFFFF;
     font-size: 14px;
     font-family: $secondary-font;
-    line-height: 22px;
-    padding: 13px 23px 13px 23px;
+    line-height: 1.2;
+    padding: 16px 20px 16px 20px;
 
-    &:hover {
-      background-color: $dark-green;
-      border-color: $dark-green;
+    &:hover, &.btn:focus, &:not(:disabled):not(.disabled):active {
+      background-color: $ffi-dark-green;
+      border-color: $ffi-dark-green;
       color: #fff;
     }
 
-    &:active, &:focus {
-      background-color: $ffi-primary-green !important;
-      border-color: $ffi-primary-green !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
+    &:disabled, &.disabled {
       background-color: $btn-disabled-bkg-color;
       border-color: $btn-disabled-bkg-color;
       color: $btn-disabled-font-color;
     }
+
+    &.btn-sm {
+      padding: 8px 20px 8px 20px;
+    }
+
+    @include btn-icon((("alert-success-check-light", 55px), ("checkmark-icon-light"), ("clock-icon"), ("send")));
   }
 
-  /* FFI Primary Reversed */
-  .btn-outline-primary {
-    border: 1px solid $btn-border-color;
+  /* FFI Primary Blue Button */
+  .btn-primary-blue {
     border-radius: 3px;
-    color: $ffi-primary-green;
+    background-color: $ffi-primary-blue;
+    color: #fff;
     font-size: 14px;
     font-family: $secondary-font;
-    line-height: 22px;
-    padding: 13px 23px 13px 23px;
+    line-height: 1.2;
+    padding: 16px 20px 16px 20px;
 
-    &:hover {
-      border: 1px solid $ffi-primary-green;
-      background-color: #fff;
-      color: $ffi-primary-green;
+    &:hover, &.btn:focus, &:not(:disabled):not(.disabled):active {
+      background-color: $ffi-dark-blue;
+      border-color: $ffi-dark-blue;
+      color: #fff;
     }
 
-    &:active, &:focus {
-      background-color: transparent !important;
-      border-color: 1px solid $ffi-primary-green !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      border: 1px solid $btn-border-color;
+    &:disabled, &.disabled {
+      background-color: $btn-disabled-bkg-color;
       color: $btn-disabled-font-color;
+      border-color: $btn-disabled-bkg-color;
+    }
+
+    &.btn-sm {
+      padding: 8px 20px 8px 20px;
     }
   }
 
   /* FFI Secondary Button */
   .btn-secondary {
     border-radius: 3px;
-    background-color: $ffi-primary-blue;
-    color: #fff;
+    background-color: $secondary-button-background-grey;
+    color: $ffi-primary-blue;
+    border-color: $secondary-button-background-grey;
     font-size: 14px;
     font-family: $secondary-font;
-    line-height: 22px;
-    padding: 13px 23px 13px 23px;
+    line-height: 1.2;
+    padding: 16px 20px 16px 20px;
 
-    &:hover {
-      background-color: $dark-blue;
-      border-color: $dark-blue;
-      color: #fff;
+    &:hover, &.btn:focus, &:not(:disabled):not(.disabled):active {
+      background-color: $secondary-button-background-hover-grey;
+      color: $ffi-primary-blue;
+      border-color: $secondary-button-background-hover-grey;
     }
 
-    &:active, &:focus {
-      background-color: $dark-blue !important;
-      border-color: $dark-blue !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
+    &:disabled, &.disabled {
       background-color: $btn-disabled-bkg-color;
       color: $btn-disabled-font-color;
       border-color: $btn-disabled-bkg-color;
     }
-  }
 
-  /* FFI Secondary Reversed */
-  .btn-outline-secondary {
-    border: 1px solid $btn-border-color;
-    border-radius: 3px;
-    color: $ffi-primary-blue;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 22px;
-    padding: 13px 23px 13px 23px;
-
-    &:hover {
-      border: 1px solid $ffi-primary-blue;
-      background-color: #fff;
-      color: $ffi-primary-blue;
-    }
-
-    &:active, &:focus {
-      background-color: transparent !important;
-      border-color: 1px solid $ffi-primary-blue !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      border: 1px solid $btn-border-color;
-      color: $btn-disabled-font-color;
+    &.btn-sm {
+      padding: 8px 20px 8px 20px;
     }
   }
 
   /* FFI Tertiary Button */
-  .btn-light {
-    border-radius: 4px;
-    background-color: #fff;
+  .btn-tertiary {
+    border: 1px solid ffi-light-grey(0.8);
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
     color: $ffi-primary-text-color;
     font-size: 14px;
     font-family: $secondary-font;
-    line-height: 22px;
-    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
-    padding: 13px 23px 13px 23px;
+    line-height: 1.2;
+    padding: 16px 20px 16px 20px;
 
-    &:hover {
-      color: $ffi-secondary-text-color;
-      box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
+    &:hover, &.btn:focus, &:not(:disabled):not(.disabled):active {
+      border: 1px solid ffi-dark-grey(0.8);
       color: $ffi-primary-text-color;
     }
 
-    &:active, &:focus {
-      background-color: #fff !important;
-      border-color: #fff !important;
-      outline: none !important;
-      box-shadow: none !important;
+    &:disabled, &.disabled {
+      background-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+      border-color: $btn-disabled-bkg-color;
     }
 
-    &:disabled {
-      background-color: $btn-disabled-bkg-color;
-      border-radius: 3px;
-      color: $btn-disabled-font-color;
+    &.btn-sm {
+      padding: 8px 20px 8px 20px;
     }
+
+    @include btn-icon((("back-arrow", 40px), ("left-arrow", 55px), ("cog-icon-dark-outline", 55px)));
   }
 
   /* FFI Caution Button */
@@ -241,235 +303,240 @@ body.ffi-default-theme {
     color: #fff;
     font-size: 14px;
     font-family: $secondary-font;
-    line-height: 22px;
+    line-height: 1.2;
+    padding: 16px 20px 16px 20px;
+
+    &:hover, &.btn:focus, &:not(:disabled):not(.disabled):active {
+      background-color: $ffi-dark-red;
+      border-color: $ffi-dark-red;
+      color: #fff;
+    }
+
+    &:disabled, &.disabled {
+      background-color: $btn-disabled-bkg-color;
+      color: $btn-disabled-font-color;
+      border-color: $btn-disabled-bkg-color;
+    }
+
+    &.btn-sm {
+      padding: 8px 20px 8px 20px;
+    }
+  }
+
+  /* CUSTOM CHECKBOX AND RADIO SELECT BUTTON */
+  div.btn.btn-select {
+    display: inline-flex;
+    margin-top: 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    background-color: $selection-box-background-color;
+    border-radius: 3px;
+    border: 1px solid $selection-box-background-color;
     padding: 13px 23px 13px 23px;
+    height: 48px;
+    box-shadow: none;
+    position: relative;
 
-    &:hover {
-      background-color: $dark-red;
-      border-color: $dark-red;
-      color: #fff;
-    }
-
-    &:active, &:focus {
-      background-color: $dark-red!important;
-      border-color: $dark-red !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      background-color: $btn-disabled-bkg-color;
-      border-color: $btn-disabled-bkg-color;
-      color: $btn-disabled-font-color;
-    }
-  }
-
-  /* FFI Primary Button - Small */
-  .btn-primary.btn-sm {
-    border-radius: 4px;
-    background-color: $ffi-primary-green;
-    color: #fff;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 16px;
-    padding: 8px 23px 8px 23px;
-
-    &:hover {
-      background-color: $dark-green;
-      border-color: $dark-green;
-      color: #fff;
-    }
-
-    &:active, &:focus {
-      background-color: $ffi-primary-green !important;
-      border-color: $ffi-primary-green !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      background-color: $btn-disabled-bkg-color;
-      border-color: $btn-disabled-bkg-color;
-      color: $btn-disabled-font-color;
-    }
-  }
-
-  /* FFI Primary Reversed - Small */
-  .btn-outline-primary.btn-sm {
-    border: 1px solid $btn-border-color;
-    border-radius: 3px;
-    color: $ffi-primary-green;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 16px;
-    padding: 8px 23px 8px 23px;
-
-    &:hover {
-      border: 1px solid $ffi-primary-green;
-      background-color: #fff;
-      color: $ffi-primary-green;
-    }
-
-    &:active, &:focus {
-      background-color: transparent !important;
-      border-color: 1px solid $ffi-primary-green !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      border: 1px solid $btn-border-color;
-      color: $btn-disabled-font-color;
-    }
-  }
-
-  /* FFI Secondary Button - Small */
-  .btn-secondary.btn-sm {
-    border-radius: 3px;
-    background-color: $ffi-primary-blue;
-    color: #fff;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 16px;
-    padding: 8px 23px 8px 23px;
-
-    &:hover {
-      background-color: $dark-blue;
-      border-color: $dark-blue;
-      color: #fff;
-    }
-
-    &:active, &:focus {
-      background-color: $dark-blue!important;
-      border-color: $dark-blue!important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      background-color: $btn-disabled-bkg-color;
-      color: $btn-disabled-font-color;
-      border-color: $btn-disabled-bkg-color;
-    }
-  }
-
-  /* FFI Secondary Reversed - Small*/
-  .btn-outline-secondary.btn-sm {
-    border: 1px solid $btn-border-color;
-    border-radius: 3px;
-    color: $ffi-primary-blue;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 22px;
-    padding: 8px 23px 8px 23px;
-
-    &:hover {
-      border: 1px solid $ffi-primary-blue;
-      background-color: #fff;
-      color: $ffi-primary-blue;
-    }
-
-    &:active, &:focus {
-      background-color: transparent !important;
-      border-color: 1px solid $ffi-primary-blue !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      border: 1px solid $btn-border-color;
-      color: $btn-disabled-font-color;
-    }
-  }
-
-  /* FFI Tertiary Button - Small */
-  .btn-light.btn-sm {
-    border-radius: 4px;
-    background-color: #fff;
-    color: $ffi-primary-text-color;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 22px;
-    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
-    padding: 8px 23px 8px 23px;
-
-    &:hover {
-      color: $ffi-secondary-text-color;
-      box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.1);
-      color: $ffi-primary-text-color;
-    }
-
-    &:active, &:focus {
-      background-color: #fff !important;
-      border-color: #fff !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      background-color: $btn-disabled-bkg-color;
-      border-radius: 3px;
-      color: $btn-disabled-font-color;
-    }
-  }
-
-  /* FFI Caution Button - Small */
-  .btn-danger.btn-sm {
-    border-radius: 3px;
-    box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.08), 0 1px 1px 0 rgba(43,26,24,0.1);
-    background-color: $ffi-primary-red;
-    border-color: $ffi-primary-red;
-    color: #fff;
-    font-size: 14px;
-    font-family: $secondary-font;
-    line-height: 16px;
-    padding: 8px 23px 8px 23px;
-
-    &:hover {
-      background-color: $dark-red;
-      border-color: $dark-red;
-      color: #fff;
-    }
-
-    &:active, &:focus {
-      background-color: $dark-red !important;
-      border-color: $dark-red !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    &:disabled {
-      background-color: $btn-disabled-bkg-color;
-      border-color: $btn-disabled-bkg-color;
-      color: $btn-disabled-font-color;
-    }
-  }
-
-  /* CUSTOM SELECT BUTTON */
-  label {
-    &.btn.btn-primary {
-      background-color: #F0F1F5;
-      border-radius: 3px;
-      border-color: #F0F1F5;
+    span label {
       color: $ffi-secondary-text-color;
       font-family: $secondary-font;
       font-size: 14px;
       line-height: 22px;
-      padding: 13px 23px 13px 23px;
-      height: 48px;
+      text-transform: capitalize;
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: $checkbox-selected-blue;
+      border: 1px solid $checkbox-selected-blue;
+
+      label {
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+
+    /* Hide the browser's default checkbox */
+    input {
+      position: absolute;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; /* added line */
+    }
+
+    /* Create a custom checkmark */
+    .checkmark {
+      display: inline-flex;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 20px;
+      width: 20px;
+      background-color: $selection-box-background-color;
+      border: 1px solid $ffi-primary-grey;
+      box-sizing: border-box;
+      border-radius: 50%;
+      margin-top: 3px;
+      margin-left: 10px;
+    }
+
+    /* On mouse-over, add a blue border on the button and check mark */
+    &:hover, &:focus {
+      border: 1px solid $ffi-primary-blue;
+    }
+
+    &:hover input ~ .checkmark {
+      border: 1px solid $ffi-primary-blue;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    input:checked ~ .checkmark {
+      background-color: $ffi-primary-blue;
+      border: 1px solid $ffi-primary-blue;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      display: none;
+    }
+
+    /* Show the checkmark when checked */
+    input:checked ~ .checkmark:after {
+      display: inline-flex;
+    }
+
+    /* Style the checkmark/indicator */
+    .checkmark:after {
+      margin: 3px 0 0 7px;
+      width: 5px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    /* Add some line height to align the text with the check box */
+    .toggle-btn-text {
+      margin-left: 10px;
+      margin-right: 10px;
+      padding-left: 18px;
+      line-height: 18px;
+      text-align: left;
+    }
+  }
+
+  /*------------------*/
+
+  /* LARGE CUSTOM RADIO SELECT BUTTON */
+  div.btn.btn-select-lg {
+    display: flex;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid $btn-disabled-bkg-color;
+    padding: 20px;
+    min-height: 110px;
+    box-shadow: none;
+    position: relative;
+
+    &.active {
+      background-color: #fff;
+      border: 1px solid $ffi-primary-blue;
 
       &:hover {
-        background-color: #F8F8FA !important;
-        border-color: #F8F8F8 !important;
-        color: $ffi-secondary-text-color;
+        background-color: #fff;
+        border: 1px solid $ffi-primary-blue;
+      }
+    }
+
+    /* Hide the browser's default checkbox */
+    input {
+      position: absolute;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; /* added line */
+    }
+
+    /* Create a custom checkmark */
+    .checkmark {
+      display: flex;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 20px;
+      width: 20px;
+      border: 2px solid ffi-light-grey(0.6);
+      box-sizing: border-box;
+      border-radius: 50%;
+      margin: 15px;
+
+      /* Hide default browser checkmark */
+      &:after {
+        position: absolute;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap; /* added line */
+      }
+    }
+
+    &:hover {
+      border: 1px solid ffi-light-grey(0.6);
+    }
+
+    &:hover input ~ .checkmark {
+      border: 2px solid $ffi-primary-grey;
+    }
+
+    input:checked ~ .checkmark {
+      background: $ffi-primary-green;
+      box-shadow: inset 0px 0px 0px 3px #fff;
+      border: 2px solid $ffi-primary-green;
+    }
+
+    input:checked ~ .checkmark:after {
+      display: inline-flex;
+    }
+
+    /* Add some line height to align the text with the check box */
+    .toggle-btn-text {
+      margin-left: 45px;
+      text-align: left;
+
+      p.title {
+        color: $ffi-primary-text-color;
+        font-family: $secondary-font;
+        font-size: 22px;
+        line-height: 1.4;
       }
 
-      &.active {
-        background-color: #fff !important;
-        border: 1px solid $ffi-primary-blue !important;
-        outline: none;
-        box-shadow: none;
-        color: $ffi-primary-blue;
+      ul {
+        color: $ffi-secondary-text-color;
+        font-family: $primary-font;
+        font-size: 14px;
+        line-height: 1.4;
+        padding-left: 14px;
+      }
+
+      label {
+        font-family: $secondary-font;
+        letter-spacing: 0.04em;
+        font-size: 12px;
+        line-height: 14px;
+        color: $ffi-secondary-text-color;
+        text-transform: uppercase;
+        margin-top: 0.5rem;
       }
     }
   }
@@ -486,7 +553,7 @@ body.ffi-default-theme {
     color: $ffi-primary-green;
 
     &:hover {
-      color: $dark-green;
+      color: $ffi-dark-green;
     }
 
     &.disabled {
@@ -498,7 +565,7 @@ body.ffi-default-theme {
       color: $ffi-primary-blue;
 
       &:hover {
-        color: $dark-blue;
+        color: $ffi-dark-blue;
       }
     }
 
@@ -519,12 +586,20 @@ body.ffi-default-theme {
       font-family: $primary-font;
     }
 
+    &.light-grey-link {
+      color: $ffi-primary-grey;
+
+      &:hover {
+        color: ffi-black(0.8);
+      }
+    }
+
     &.underlined-primary {
       color: $ffi-primary-green;
       text-decoration: underline;
 
       &:hover {
-        color: $dark-green;
+        color: $ffi-dark-green;
       }
     }
 
@@ -533,7 +608,7 @@ body.ffi-default-theme {
       text-decoration: underline;
 
       &:hover {
-        color: $dark-blue;
+        color: $ffi-dark-blue;
       }
     }
 
@@ -568,9 +643,11 @@ body.ffi-default-theme {
 
       label {
         font-family: $secondary-font;
+        letter-spacing: 0.04em;
         font-size: 12px;
-        line-height: 18px;
-        color: $form-label-small-text-color;
+        line-height: 14px;
+        color: $ffi-primary-grey;
+        text-transform: uppercase;
 
         .required-asterisk {
           color: $ffi-primary-red;
@@ -581,7 +658,7 @@ body.ffi-default-theme {
 
       small {
         font-family: $primary-font;
-        color: $form-label-small-text-color !important;
+        color: $ffi-primary-grey;
         font-size: 14px;
         line-height: 16px;
       }
@@ -607,35 +684,37 @@ body.ffi-default-theme {
       .input-group {
         .input-group-prepend {
           border-radius: 3px 0 0 3px;
-          background-color: #F6F6F6;
 
           .input-group-text {
             font-family: $primary-font;
-            color: $ffi-secondary-text-color;
+            color: $ffi-primary-grey;
             font-size: 14px;
-            line-height: 22px;
+            line-height: 16px;
+            background-color: $form-group-disabled-color;
+            border: 1px solid ffi-light-grey(0.6)
           }
         }
       }
 
       .form-control {
         font-family: $primary-font;
-        border: 1px solid $ffi-primary-grey;
+        border: 1px solid ffi-light-grey(0.6);
         border-radius: 3px;
-        color: $form-input-text-color;
+        color: $ffi-primary-text-color;
         font-size: 14px;
-        line-height: 20px;
-        height: 40px;
+        line-height: 1.2;
+        height: 48px;
 
         &:focus {
-          border: 1px solid $form-grey-secondary;
+          border: 1px solid $ffi-primary-text-color;
           outline: none;
           box-shadow: none;
         }
 
         &:disabled {
-          border: 1px solid #EDEDED;
-          background-color: $btn-disabled-bkg-color;
+          color: $ffi-primary-grey;
+          border: 1px solid ffi-light-grey(0.6);
+          background-color: $form-group-disabled-color;
         }
 
         &.is-invalid {
@@ -643,9 +722,7 @@ body.ffi-default-theme {
         }
 
         &::placeholder {
-          color: $form-grey-secondary;
-          font-size: 14px;
-          line-height: 20px;
+          color: $ffi-primary-grey;
         }
       }
 
@@ -657,10 +734,10 @@ body.ffi-default-theme {
         text-align: left;
         color: $ffi-primary-text-color;
         border-radius: 3px;
-        border: 1px solid $ffi-primary-grey;
+        border: 1px solid ffi-light-grey(0.6);
         box-shadow: none;
-        height: 40px;
-        background: image-url('arrow-down.svg') right 20px top 50% no-repeat !important;
+        height: 48px;
+        background: image-url('partial-arrow-down.svg') right 20px top 50% no-repeat;
 
         &::after {
           vertical-align: 0;
@@ -668,53 +745,125 @@ body.ffi-default-theme {
         }
 
         &:focus, &:active {
-          border: 1px solid $form-grey-secondary;
+          border: 1px solid $ffi-primary-text-color;
         }
 
         &:disabled {
-          background-color: $btn-disabled-bkg-color !important;
+          background-color: $form-group-disabled-color;
         }
+      }
+
+      .search-field {
+        background: image-url('magnifying-glass.svg') right 10px top 50% no-repeat;
+        padding-right: 2rem;
+      }
+
+      .grey-search-field {
+        background: #F4F5F6 image-url('magnifying-glass.svg') left 10px top 50% no-repeat;
+        padding-left: 2rem;
       }
     }
 
-    option:not(:checked) {
-      background-color: #fff;
-    }
-
-    /* CUSTOM FFI CHECKBOX AND RADIO BUTTON */
-    /* Inspiration from: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
-
-    /* Customize the label (the container) */
-    .checkbox-radio-container {
-      position: relative;
-      padding-left: 25px;
-      margin-bottom: 12px;
-      cursor: pointer;
+    /* Custom radio button */
+    .radio-container {
       font-size: 14px;
       line-height: 16px;
       font-family: $primary-font;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
 
-    /* Hide the browser's default checkbox */
-    .checkbox-radio-container input {
-      display: none;
+      & label {
+        text-transform: none;
+      }
+
+      /* Add some display, position, and alignment rules */
+      input[type="radio"], .radio {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+
+      .radio {
+        position: relative;
+      }
+
+      /* Hide the browser's default input */
+      input[type="radio"] {
+        position: absolute;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap; /* added line */
+      }
+
+      /* Set border to slightly darker when hover */
+      &:hover input[type="radio"] + .radio:before {
+        border: 2px solid ffi-light-grey(0.8);
+      }
+
+      /* Style the circle */
+      input[type="radio"] + .radio:before {
+        content: '';
+        background: #fff;
+        border: 2px solid ffi-light-grey(0.6);
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        padding: 2px;
+        margin-right: 5px;
+        text-align: center;
+        border-radius: 50%;
+      }
+
+      /* Make the circle green when checked */
+      input[type="radio"]:checked + .radio:before {
+        background: $ffi-primary-green;
+        box-shadow: inset 0px 0px 0px 3px #fff;
+        border: 2px solid $ffi-primary-green;
+      }
+
+      input[type="radio"]:disabled ~ .radio:before {
+        background-color: ffi-light-grey(0.2);
+      }
+
+      &.disabled {
+        & > label, small {
+          color: $ffi-primary-grey;
+        }
+      }
     }
+  }
+
+  /* CUSTOM FFI CHECKBOX */
+  /* Inspiration from: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+
+  /* Customize the label (the container) */
+  .checkbox-container {
+    position: relative;
+    padding-top: 2px;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: $primary-font;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     /* Create a custom checkbox */
     .checkmark {
       position: absolute;
       top: 0;
       left: 0;
-      height: 16px;
-      width: 16px;
+      height: 20px;
+      width: 20px;
       background-color: #fff;
       border-radius: 3px;
-      border: 1px solid $ffi-secondary-grey;
-      display:inline-block;
+      border: 2px solid ffi-light-grey(0.6);
+      display: inline-block;
 
       /* Create the checkmark/indicator (hidden when not checked) */
       &:after {
@@ -728,71 +877,47 @@ body.ffi-default-theme {
       }
     }
 
-    /* Create a custom radio button */
-    .radio {
+    /* Hide the browser's default checkbox */
+    input {
       position: absolute;
-      top: 0;
-      left: 0;
-      height: 16px;
-      width: 16px;
-      background-color: #fff;
-      border-radius: 50%;
-      border: 1px solid $ffi-secondary-grey;
-
-      /* Create the indicator (the dot/circle - hidden when not checked) */
-      &:after {
-        content: '';
-        display: none;
-      }
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; /* added line */
     }
 
-    .checkbox-radio-container:hover input ~ .checkmark {
-      background-color: #fff;
+    &:hover input ~ .checkmark {
+      background-color: inherit;
       border-radius: 3px;
-      border: 1px solid $ffi-secondary-grey;
-    }
-
-    .checkbox-radio-container:hover input ~ .radio {
-      background-color: #fff;
-      border: 1px solid $ffi-secondary-grey;
+      border: 2px solid $ffi-primary-grey;
     }
 
     /* When the checkbox is checked, background should remain white */
-    .checkbox-radio-container input:checked ~ .checkmark {
-      background-color: #fff;
-    }
-
-    /* When the radio button is checked, background should be ffi green */
-    .checkbox-radio-container input:checked ~ .radio {
+    input:checked ~ .checkmark {
       background-color: $ffi-primary-green;
-      border: solid $ffi-primary-green;
+      border: 2px solid $ffi-primary-green;
     }
 
     /* Show the indicator when checked */
-    .checkbox-radio-container input:checked ~ .checkmark:after, .radio:after {
-      display: block;
-    }
+    input:checked ~ .checkmark:after { display: block; }
 
     /* Style the checkmark/indicator */
-    .checkbox-radio-container .checkmark:after {
-      width: 5px;
-      height: 10px;
-      border: solid $ffi-primary-green;
+    .checkmark:after {
+      width: 7px;
+      height: 13px;
+      border: 1px solid #fff;
       margin-left: 5px;
-      border-width: 0 1px 1px 0;
+      margin-top: 0px;
+      border-width: 0 2px 2px 0;
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
     }
 
-    /* Style the indicator (dot/circle) */
-    .checkbox-radio-container .radio:after {
-      width: 6px;
-      height: 6px;
-      margin-top: 2px;
-      margin-left: 2px;
-      border-radius: 50%;
-      background: #fff;
+    input:disabled ~ .checkmark {
+      background-color: ffi-light-grey(0.2);
     }
   }
 
@@ -804,14 +929,14 @@ body.ffi-default-theme {
     button.dropdown-toggle {
       font-family: $secondary-font;
       font-size: 14px;
-      line-height: 20px;
+      line-height: 16px;
       text-align: left;
       border-radius: 3px;
       width: 100%;
       color: $ffi-primary-text-color;
-      border: 1px solid $ffi-primary-grey;
+      border: 1px solid ffi-light-grey(0.8);
       box-shadow: none;
-      background: image-url('arrow-down.svg') right 20px top 50% no-repeat !important;
+      background: image-url('partial-arrow-down.svg') right 20px top 50% no-repeat;
 
       &::after {
         vertical-align: 0;
@@ -820,7 +945,7 @@ body.ffi-default-theme {
       }
 
       &:focus, &:active {
-        border-color: $ffi-primary-grey !important;
+        border-color: ffi-dark-grey(0.8);
         box-shadow: none;
       }
     }
@@ -828,11 +953,10 @@ body.ffi-default-theme {
     .dropdown-menu {
       margin-top: 5px;
       width: 100%;
-      box-shadow: 0 1px 0 0 $ffi-light-grey;
 
       a {
         font-family: $primary-font;
-        color: $ffi-dark-grey;
+        color: $ffi-primary-text-color;
         font-size: 14px;
         line-height: 22px;
       }
@@ -847,7 +971,7 @@ body.ffi-default-theme {
   .btn-toggle {
     top: 50%;
     transform: translateY(-50%);
-    background-color: $ffi-light-grey;
+    background-color: ffi-light-grey(0.6);
     box-shadow: none;
     margin: 15px;
     padding: 0;
@@ -881,7 +1005,7 @@ body.ffi-default-theme {
       height: 24px;
       border-radius: 12px;
       background-color: #fff;
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+      box-shadow: 0 2px 4px 0 ffi-light-grey(0.4);
       transition: left .25s;
     }
 
@@ -908,11 +1032,11 @@ body.ffi-default-theme {
     .popover-body {
       font-family: $primary-font;
       background-color: $popover-background;
-      box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       border-radius: 3px;
       color: #fff;
       font-size: 14px;
-      line-height: 22px;
+      line-height: 1.4;
       text-align: center;
       padding: 10px;
     }
@@ -939,47 +1063,191 @@ body.ffi-default-theme {
   /*-----------------------------------------------------------------------------------*/
 
   .alert {
+    text-align: left;
+
     &.alert-success {
       border-radius: 3px;
-      background-color: $ffi-primary-green;
-      color: #fff;
+      border: 1px solid ffi-green(0.2);
+      background-color: ffi-green(0.1);
+      color: $success-badge-and-flash-color;
       font-family: $secondary-font;
       font-size: 14px;
-      line-height: 22px;
+      line-height: 1.2;
+
+      &.alert-success-with-check-icon {
+        background: ffi-green(0.1) image-url('alert-success-check.svg') left 15px top 8px no-repeat;
+        padding-left: 3.25rem;
+      }
     }
 
     &.alert-primary {
       border-radius: 3px;
-      background-color: $ffi-primary-blue;
-      color: #fff;
+      border: 1px solid ffi-blue(0.2);
+      background-color: ffi-blue(0.1);
+      color: $primary-badge-and-flash-color;
       font-family: $secondary-font;
       font-size: 14px;
-      line-height: 22px;
+      line-height: 16px;
+
+      &.alert-primary-with-lock-icon {
+        background: ffi-blue(0.1) image-url('lock.svg') left 15px top 8px no-repeat;
+        padding-left: 3.25rem;
+      }
+
+      &.alert-primary-with-information-icon {
+        background: ffi-blue(0.1) image-url('info-icon-black.svg') left 15px top 8px no-repeat;
+        padding-left: 3.25rem;
+      }
     }
 
     &.alert-warning {
       border-radius: 3px;
-      background-color: $ffi-primary-orange;
-      color: #fff;
+      border: 1px solid ffi-orange(0.2);
+      background-color: ffi-orange(0.1);
+      color: $warning-badge-and-flash-color;
       font-family: $secondary-font;
       font-size: 14px;
-      line-height: 22px;
+      line-height: 16px;
+
+      li {
+        font-family: $primary-font;
+      }
+
+      &.alert-warning-with-alert-icon {
+        background: ffi-orange(0.1) image-url('warning-circle.svg') left 15px top 8px no-repeat;
+        padding-left: 3.25rem;
+      }
     }
 
     &.alert-danger {
       border-radius: 3px;
-      background-color: $ffi-primary-red;
-      color: #fff;
+      border: 1px solid ffi-red(0.2);
+      background-color: ffi-red(0.1);
+      color: $danger-badge-and-flash-color;
       font-family: $secondary-font;
       font-size: 14px;
-      line-height: 22px;
+      line-height: 16px;
+
+      li {
+        font-family: $primary-font;
+      }
+
+      &.alert-danger-with-warning-icon {
+        background: ffi-red(0.1) image-url('warning.svg') left 15px top 8px no-repeat;
+        padding-left: 3.25rem;
+      }
+    }
+  }
+
+  .alert .close {
+    padding: 0.55rem 1.25rem;
+  }
+
+  /* The warning container and reminder container can be found here:
+     https://www.figma.com/file/PhcfY7gtNNaEQE6YseVjOChc/Alerts-%26-Tags?node-id=33%3A2 */
+  .warning-container {
+    background: ffi-orange(0.1) image-url('orange-icon-exclamation.svg') left 15px top 13px no-repeat;
+    padding: 0.75rem 1.25rem 0.75rem 3.25rem;
+    border-radius: 4px;
+    border-left: 5px solid ffi-orange(1);
+    font-size: 18px;
+    font-family: $secondary-font;
+    color: #000;
+
+    .container-body p {
+      color: $ffi-secondary-text-color;
+      font-size: 14px;
+      font-family: $primary-font;
+    }
+  }
+
+  .reminder-container {
+    background: ffi-light-blue(0.1) image-url('bell.svg') left 15px top 13px no-repeat;
+    padding: 0.75rem 1.25rem 0.75rem 3.25rem;
+    border-radius: 4px;
+    border-left: 5px solid ffi-light-blue(1);
+    font-size: 18px;
+    font-family: $secondary-font;
+    color: #000;
+
+    .container-body p {
+      color: $ffi-secondary-text-color;
+      font-size: 14px;
+      font-family: $primary-font;
     }
   }
 
   /*-----------------------------------------------------------------------------------*/
-  /* Vertical Nav */
+  /* Badges */
+  /*-----------------------------------------------------------------------------------*/
+  span.badge {
+    font-size: 12px;
+    line-height: 1.2;
+    border-radius: 50vh;
+    padding: 5px;
+
+    &.badge-success {
+      color: $success-badge-and-flash-color;
+      background: ffi-green(0.2);
+    }
+
+    &.badge-primary {
+      color: $primary-badge-and-flash-color;
+      background: ffi-blue(0.2);
+    }
+
+    &.badge-warning {
+      color: $warning-badge-and-flash-color;
+      background: ffi-orange(0.2);
+    }
+
+    &.badge-danger {
+      color: $danger-badge-and-flash-color;
+      background: ffi-red(0.2);
+    }
+
+    &.badge-filter {
+      padding: 7px 15px 7px 15px;
+      background: ffi-light-blue(0.2);
+      color: $ffi-primary-blue;
+    }
+
+    &.badge-grey {
+      color: $ffi-primary-grey;
+      background: ffi-light-grey(0.2);
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Tags */
   /*-----------------------------------------------------------------------------------*/
 
+  .tag {
+    font-size: 12px;
+    line-height: 1.2;
+    padding-left: 1.75rem;
+    font-family: $primary-font;
+    color: $ffi-primary-grey;
+
+    &.tag-success {
+      background: image-url('dot-success.svg') left 10px top 50% no-repeat;
+    }
+
+    &.tag-warning {
+      background: image-url('dot-warning.svg') left 10px top 50% no-repeat;
+    }
+
+    &.tag-danger {
+      background: image-url('dot-danger.svg') left 10px top 50% no-repeat;
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Nav Menus */
+  /*-----------------------------------------------------------------------------------*/
+
+
+  /* Vertical Nav */
   nav {
     &.vertical-nav {
       background-color: #fff;
@@ -988,14 +1256,51 @@ body.ffi-default-theme {
       text-align: left;
 
       a {
-        font-size: 16px;
+        font-size: 14px;
         font-family: $primary-font;
-        line-height: 24px;
+        line-height: 1.2;
       }
 
       .active {
         color: $ffi-primary-text-color;
         font-family: $secondary-font;
+      }
+    }
+  }
+
+  /* Nav-Tabs with Border Bottom */
+  .border-bottom-nav {
+    border-bottom: 1px solid #D4D9DE;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    a {
+      font-size: 16px;
+      line-height: 19px;
+      color: ffi-black(0.6);
+      padding: 16px 30px;
+      border-bottom: 3px solid transparent;
+
+      &.active {
+        border-bottom: 3px solid $ffi-primary-blue;
+        color: $ffi-primary-text-color;
+      }
+    }
+  }
+
+  .nav-pills {
+    a {
+      font-size: 16px;
+      line-height: 19px;
+      color: $ffi-primary-text-color;
+
+      &.active {
+        background: ffi-light-blue(0.2);
+        border-radius: 3px;
+        color: $ffi-primary-blue;
       }
     }
   }
@@ -1007,25 +1312,136 @@ body.ffi-default-theme {
   .modal-title {
     font-family: $secondary-font;
     line-height: 1.5;
-    color: $ffi-dark-grey;
+    color: $ffi-primary-text-color;
     font-size: 20px;
-    line-height: 30px;
+  }
+
+  .modal-header {
+    padding: 20px 30px;
   }
 
   .modal-body {
-    p {
-      font-size: 14px;
-      line-height: 22px;
-      color: $ffi-secondary-text-color;
-      font-family: $primary-font;
-    }
+    padding: 30px;
   }
 
   .modal-footer {
+    padding: 20px 30px;
     justify-content: flex-start;
 
     button {
-      margin-right: 25px;
+      margin-right: 20px;
     }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Tables */
+  /*-----------------------------------------------------------------------------------*/
+
+  .table-container {
+    font-family: $primary-font;
+    color: $ffi-secondary-text-color;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    text-align: left;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+
+  .table-header {
+    font-family: $secondary-font;
+    font-size: 12px;
+    line-height: 1.2;
+    color: $ffi-secondary-text-color;
+    background-color: #F7F9FA;
+
+    tr th {
+      padding: 14px 30px 14px 30px;
+      border-top: 0;
+      border-bottom: 0;
+
+      a.sort-link {
+        font-size: 12px;
+        color: $ffi-secondary-text-color;
+        line-height: 1.2;
+        font-family: $secondary-font;
+      }
+    }
+  }
+
+  .table-body tr td {
+    padding: 14px 30px 14px 30px;
+    color: $ffi-secondary-text-color;
+  }
+
+  table {
+    tr, td {
+      strong {
+        font-family: $secondary-font;
+        color: $ffi-primary-text-color;
+
+        &.info {
+          color: $ffi-primary-blue;
+        }
+
+        &.positive {
+          color: $ffi-primary-green;
+        }
+      }
+    }
+  }
+
+  .table-body tr:hover {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .table-hover {
+    margin-bottom: 0;
+  }
+
+  .table-striped tbody tr {
+    &:nth-of-type(odd) {
+      background-color: #FFFFFF;
+    }
+
+    &:nth-of-type(even) {
+      background-color: #F2F2F7;
+    }
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Containers */
+  /*-----------------------------------------------------------------------------------*/
+
+  /* This is the drag & drop container from this design page:
+     https://www.figma.com/file/Qe2I6j1OyDKFHTnmC27xCZtS/Buttons?node-id=42%3A31 */
+  // Requires the dashed-border-container.svg file to function
+  .dashed-border-container {
+    // Based on: https://stackoverflow.com/a/26858151/3504731
+    // Fall back style if browser don't support border-image
+    border: dashed 3px ffi-light-grey(0.4);
+    box-sizing: border-box;
+    border-radius: 3px;
+
+    border-image: image_url('dashed-border-rectangle.svg') 3 round;
+    background-color: #FBFBFD;
+    border-image-width: 1;
+    padding: 15px;
+  }
+
+  /*-----------------------------------------------------------------------------------*/
+  /* Miscellaneous */
+  /*-----------------------------------------------------------------------------------*/
+
+  hr.divider {
+    height: 1px;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: $btn-disabled-bkg-color;
   }
 }
