@@ -19,3 +19,10 @@
   src:font-url('MessinaSansWeb-Light.woff2') format('woff2'),
       font-url('MessinaSansWeb-Light.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Messina Sans Bold';
+  src:font-url('MessinaSansWeb-Bold.eot');
+  src:font-url('MessinaSansWeb-Bold.woff2') format('woff2'),
+      font-url('MessinaSansWeb-Bold.woff') format('woff');
+}
