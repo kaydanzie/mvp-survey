@@ -22,8 +22,10 @@
       </div>
 
       <div class="row justify-content-center pb-5">
-        <div class="col-lg-2 col-sm-12 text-center"><%= form.submit 'Vote', class: 'btn btn-secondary' %></div>
-        <div class="col-lg-2 col-sm-12 mt-sm-3 mt-3 mt-lg-0 text-center"><%= link_to 'Back', surveys_path, class: "btn btn-outline-secondary" %></div>
+        <div class="col text-center">
+          <%= form.submit 'Vote', class: 'btn btn-primary-blue' %>
+          <%= link_to 'Back', surveys_path, class: "pl-3 tertiary-link" %>
+        </div>
       </div>
     <% end %>
   </div>
