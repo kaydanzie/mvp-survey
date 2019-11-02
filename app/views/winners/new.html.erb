@@ -7,7 +7,7 @@
         <div class="col-10 col-lg-4">
           <div class="form-group">
             <p class="small">Select one winner from the list of nominees below.</p>
-            <%= form.select :user_id, @survey.uniq_nominees.collect { |nom| [ nom.full_name, nom.id ] }, { include_blank: 'Select a nominee for MVP' }, class: 'form-control' %>
+            <%= form.select :user_id, @survey.uniq_nominees.collect { |nom| [ nom.full_name, nom.id ] }, { include_blank: 'Select a nominee for MVP' }, class: 'form-control custom-select' %>
 
             <div class="invalid-feedback">
               <span><%= @winner.errors[:user_id].join(", ") %></span>
