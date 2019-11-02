@@ -34,18 +34,15 @@
       </div>
 
       <div class="row justify-content-center mt-4">
-        <div class="col-10 col-sm-6 col-xl-3 text-center">
+        <div class="col text-center">
           <%= link_to "Pick a Winner", new_survey_winner_path(@survey), class: 'secondary-link' unless @survey.winner %>
         </div>
       </div>
     <% end %>
 
-    <div class="row justify-content-center mt-4">
-      <div class="col text-center"><%= link_to 'Edit', edit_survey_path(@survey), class: "btn btn-secondary" if can? :edit, @survey %></div>
-    </div>
-
     <div class="row justify-content-center mt-3">
-      <div class="col text-center"><%= link_to 'Back', surveys_path, class: "btn btn-outline-secondary" %></div>
+      <div class="col-12 text-center"><%= link_to 'Edit', edit_survey_path(@survey), class: "btn btn-primary-blue py-3 px-5" if can? :edit, @survey %></div>
+      <div class="col-12 text-center py-4"><%= link_to 'Back', surveys_path, class: "tertiary-link" %></div>
     </div>
   </div>
 </div>

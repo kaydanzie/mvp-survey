@@ -22,10 +22,8 @@
       </div>
 
       <div class="row justify-content-center pb-5">
-        <div class="col text-center">
-          <%= form.submit 'Vote', class: 'btn btn-primary-blue' %>
-          <%= link_to 'Back', surveys_path, class: "pl-3 tertiary-link" %>
-        </div>
+        <div class="col-12 text-center"><%= form.submit 'Vote', class: 'btn btn-primary-blue py-3 px-5' %></div>
+        <div class="col-12 text-center py-3"><%= link_to 'Cancel', surveys_path, class: "tertiary-link" %></div>
       </div>
     <% end %>
   </div>
