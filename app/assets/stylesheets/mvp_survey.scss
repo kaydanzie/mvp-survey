@@ -3,68 +3,13 @@
 // Overrides for default FFI theme
 body.ffi-default-theme {
   background-color: #FBFBFD;
-
   h1 { font-size: 30px; }
+  h2 { font-size: 26px; }
 
-  // Links inside paragraph tags should be same size as rest of text
-  p a {
-    font-size: 18px;
-  }
-
-  // Instead of width: 100%
-  .dropdown .dropdown-menu, ul.dropdown-menu.dropdown-menu-left {
-    width: auto;
-  }
-
-  // When clicked, outline button text turns white and border is blue by default
-  .btn-outline-primary:not(:disabled):not(.disabled) {
-    &:active {
-      color: $dark-green;
-      border: 1px solid $dark-green;
-    }
-  }
-
-  // Navbar styles are not defined in FFI stylesheet
+  // Horizontal nav style not defined in FFI stylesheet
   nav.navbar {
     border-bottom: 1px solid #E7E7E7;
     box-shadow: none;
     background-color: #FFFFFF;
-  }
-
-  // Default makes it smaller on hover for some reason
-  a.btn-outline-primary {
-    &:hover {
-      font-family: $secondary-font;
-    }
-
-    &:active {
-      font-family: $secondary-font;
-      border: 1px solid $dark-green;
-      color: $dark-green;
-    }
-  }
-
-  .btn-secondary {
-    border-color: $ffi-primary-blue;
-  }
-
-  .table {
-    border-radius: 4px;
-    overflow: hidden;
-
-    th, td {
-      // Default is top aligned
-      vertical-align: middle;
-      padding: 0.85rem;
-    }
-  }
-
-  // Override bright blue background on click
-  a.dropdown-item:active {
-    color: $ffi-primary-green;
-    font-size: 14px;
-    line-height: 16px;
-    text-decoration: none;
-    background-color: transparent;
   }
 }

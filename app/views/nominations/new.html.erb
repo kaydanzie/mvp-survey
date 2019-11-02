@@ -7,7 +7,7 @@
         <div class="col-10 col-lg-4">
           <div class="form-group">
             <p class="small">You can nominate anyone from your office, besides yourself.</p>
-            <%= form.select :nominee_id, User.nominatable(current_user).collect { |p| [ p.full_name, p.id ] }, { include_blank: 'Select employee to nominate' }, class: 'form-control' %>
+            <%= form.select :nominee_id, User.nominatable(current_user).collect { |p| [ p.full_name, p.id ] }, { include_blank: 'Select employee to nominate' }, class: 'form-control custom-select' %>
 
             <div class="invalid-feedback">
               <span><%= @nomination.errors[:nominee_id].first %></span>
@@ -22,8 +22,8 @@
       </div>
 
       <div class="row justify-content-center pb-5">
-        <div class="col-lg-2 col-sm-12 text-center"><%= form.submit 'Vote', class: 'btn btn-secondary' %></div>
-        <div class="col-lg-2 col-sm-12 mt-sm-3 mt-3 mt-lg-0 text-center"><%= link_to 'Back', surveys_path, class: "btn btn-outline-secondary" %></div>
+        <div class="col-12 text-center"><%= form.submit 'Vote', class: 'btn btn-primary-blue py-3 px-5' %></div>
+        <div class="col-12 text-center py-3"><%= link_to 'Cancel', surveys_path, class: "tertiary-link" %></div>
       </div>
     <% end %>
   </div>

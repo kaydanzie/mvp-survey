@@ -1,7 +1,7 @@
-<h1>All Employees</h1>
+<h1 class="py-3">All Employees</h1>
 
 <table class="table table-hover">
-  <thead class="thead-dark">
+  <thead class="table-header">
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
@@ -11,14 +11,14 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-body">
     <% @users.each do |u| %>
       <tr>
         <td><%= full_name(u) %></td>
         <td><%= u.email %></td>
         <td><%= u.role.titleize %></td>
         <td><%= u.office %></td>
-        <td><%= link_to "Edit", edit_user_path(u), remote: true %></td>
+        <td><%= link_to "Edit", edit_user_path(u), class: "secondary-link", remote: true %></td>
       </tr>
     <% end %>
   </tbody>
