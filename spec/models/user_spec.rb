@@ -47,7 +47,7 @@ RSpec.describe User do
       nomination = create(:nomination, user: user)
 
       # Assert
-      expect(user.voted?(nomination.survey)).to be_truthy
+      expect(user).to be_voted(nomination.survey)
     end
   end
 end
