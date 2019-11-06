@@ -8,6 +8,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
+
+      # keeps bugging the user every time they login until they set their office location
+      unless @user.office
+        sign_in @user
+        return redirect_to office_user_url(@user)
+      end
+
       sign_in_and_redirect @user, event: :authentication
     else
       # Removes :extra as it can overflow some session stores
