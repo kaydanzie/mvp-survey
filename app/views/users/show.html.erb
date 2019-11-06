@@ -6,6 +6,7 @@
       <div class="card-header"><%= @user.full_name %></div>
 
       <div class="card-body">
+        <p class="small">Office: <%= @user.office %></p>
         <p class="small">Total Nominations Given: <%= @user.nominations.count %></p>
         <% if @user.received_nominations.any? %>
           <p class="small">Total Received Nominations: <%= @user.received_nominations.count %></p>
