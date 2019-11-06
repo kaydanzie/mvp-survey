@@ -9,16 +9,26 @@ class UsersController < ApplicationController
   # GET /users/:id/edit
   def edit; end
 
+  # GET /users/:id
   def show; end
 
   # PATCH/PUT /users/:id
+  # Used by admins to modify user roles and offices, and by employees to modify their current office
+  # rubocop:disable Metrics/AbcSize
   def update
-    # Fixes brakeman violation with allowing role param to be passed
-    safe_params = user_params.merge(role: params[:user][:role])
-    @user.update(safe_params)
-    success_msg = "#{@user.first_name} successfully updated."
-    redirect_to users_url, flash: { notice: success_msg }
+    if request.referer.include? "office"
+      @user.update(user_params)
+      redirect_to surveys_url, notice: "Welcome to MVP Surveys!"
+    else
+      # Fixes brakeman violation with allowing role param to be passed
+      @user.update(user_params.merge(role: params[:user][:role]))
+      redirect_to users_url, notice: "Successfully updated #{@user.first_name}."
+    end
   end
+  # rubocop:enable Metrics/AbcSize
+
+  # GET /users/:id/office
+  def office; end
 
   private
 
