@@ -14,20 +14,24 @@ RSpec.describe "Users", type: :request do
   it 'renders edit' do
     get edit_user_url(admin), xhr: true
     expect(response).to be_successful
-    expect(response.body).to include("Edit User")
+    expect(response.body).to include("Editing")
   end
 
   describe '#update' do
     let(:user_params) { { user: { office: "Costa Mesa" } } }
 
-    it 'redirects to index' do
-      put user_path(admin), params: user_params
-      expect(response).to redirect_to(users_url)
-    end
+    context 'when coming from the index' do
+      let(:headers) { { 'HTTP_REFERER' => users_path } }
 
-    it 'displays flash notice' do
-      put user_path(admin), params: user_params
-      expect(flash[:notice]).to match("successfully updated")
+      it 'redirects to index' do
+        put user_path(admin), params: user_params, headers: headers
+        expect(response).to redirect_to(users_url)
+      end
+
+      it 'displays flash notice' do
+        put user_path(admin), params: user_params, headers: headers
+        expect(flash[:notice]).to match("successfully updated")
+      end
     end
   end
 end
