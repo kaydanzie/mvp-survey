@@ -17,6 +17,12 @@ RSpec.describe "Users", type: :request do
     expect(response.body).to include("Editing")
   end
 
+  it 'renders office' do
+    get office_user_url(admin)
+    expect(response).to be_successful
+    expect(response.body).to include("Office")
+  end
+
   describe '#update' do
     let(:user_params) { { user: { office: "Costa Mesa" } } }
 
