@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   # rubocop:disable Metrics/AbcSize
   def update
     if request.referer.include? "office"
+      # Won't actually update office if user submits an invalid value but for simplicity I'm not
+      # going to show them the error for now
       @user.update(user_params)
       redirect_to surveys_url, notice: "Welcome to MVP Surveys!"
     else
