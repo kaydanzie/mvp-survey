@@ -69,7 +69,7 @@ Rails.application.configure do
       # available_users is a hash,
       # key is the model name of user (:user, :admin, or any name you use),
       # value is a block that return the users that can be switched.
-      config.available_users = { user: -> { User.switch_user_roles } }
+      config.available_users = { user: -> { User.all } }
 
       # available_users_names is a hash,
       # keys in this hash should match a key in the available_users hash

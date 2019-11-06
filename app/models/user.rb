@@ -62,10 +62,4 @@ class User < ApplicationRecord
       email: auth.info.email
     )
   end
-
-  # Utilized in development only
-  def self.switch_user_roles
-    # Users are created in db/seeds.rb
-    User.all
-  end
 end
