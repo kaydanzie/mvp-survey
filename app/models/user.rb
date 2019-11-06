@@ -6,6 +6,7 @@ class User < ApplicationRecord
   after_create :initialize_user
   validate :ffi_email_address?
   validates :office, presence: true, on: :update
+  validates :office, inclusion: { in: OFFICES, allow_nil: false }, on: :update
 
   # Users that are able to be nominated by the current user
   # Must be: from the same office, not self

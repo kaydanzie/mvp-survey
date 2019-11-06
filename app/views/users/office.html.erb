@@ -5,6 +5,10 @@
       <div class="form-group">
         <%= form.label :office %>
         <%= form.select :office, User::OFFICES, { include_blank: false }, class: "form-control custom-select" %>
+
+        <div class="invalid-feedback">
+          <span><%= @user.errors[:office].first %></span>
+        </div>
       </div>
     </div>
   </div>
