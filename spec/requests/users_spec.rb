@@ -23,14 +23,28 @@ RSpec.describe "Users", type: :request do
     context 'when coming from the index' do
       let(:headers) { { 'HTTP_REFERER' => users_path } }
 
-      it 'redirects to index' do
+      it 'redirects to user index' do
         put user_path(admin), params: user_params, headers: headers
         expect(response).to redirect_to(users_url)
       end
 
       it 'displays flash notice' do
         put user_path(admin), params: user_params, headers: headers
-        expect(flash[:notice]).to match("successfully updated")
+        expect(flash[:notice]).to match("Successfully updated")
+      end
+    end
+
+    context 'when coming from the office page' do
+      let(:headers) { { 'HTTP_REFERER' => office_user_path(admin) } }
+
+      it 'redirects to survey index' do
+        put user_path(admin), params: user_params, headers: headers
+        expect(response).to redirect_to(surveys_url)
+      end
+
+      it 'displays flash notice' do
+        put user_path(admin), params: user_params, headers: headers
+        expect(flash[:notice]).to match("Welcome")
       end
     end
   end
