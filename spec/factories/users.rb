@@ -5,6 +5,7 @@ FactoryBot.define do
     first_name { 'Ken' }
     last_name { 'Adams' }
     role { 'employee' }
+    office { 'Grand Rapids' }
     sequence(:email) { |n| "ffi_#{n}@formulafolios.com" }
 
     factory :admin do
