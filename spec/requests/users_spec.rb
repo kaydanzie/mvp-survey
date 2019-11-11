@@ -6,19 +6,19 @@ RSpec.describe "Users", type: :request do
   before { sign_in admin }
 
   it 'renders index' do
-    get users_url
+    get users_path
     expect(response).to be_successful
     expect(response.body).to include("All Employees")
   end
 
   it 'renders edit' do
-    get edit_user_url(admin), xhr: true
+    get edit_user_path(admin), xhr: true
     expect(response).to be_successful
     expect(response.body).to include("Editing")
   end
 
   it 'renders office' do
-    get office_user_url(admin)
+    get office_user_path(admin)
     expect(response).to be_successful
     expect(response.body).to include("Office")
   end
