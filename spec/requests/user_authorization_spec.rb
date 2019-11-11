@@ -38,7 +38,7 @@ RSpec.describe "User authorization", type: :request do
     before { sign_in create(:admin) }
 
     it 'renders page' do
-      get edit_user_path(User.last), xhr: true
+      get users_path
       expect(response).to be_successful
     end
   end
@@ -53,12 +53,12 @@ RSpec.describe "User authorization", type: :request do
 
     context 'without permission' do
       it 'redirects to home page' do
-        get edit_user_path(User.last)
+        get users_path
         expect(response).to redirect_to(root_path)
       end
 
       it 'displays error message' do
-        get edit_user_path(User.last)
+        get users_path
         expect(controller).to set_flash[:error].to(/not authorized/)
       end
     end
