@@ -1,29 +1,65 @@
 require 'rails_helper'
 
 RSpec.describe 'Initial Login', type: :system do
-  before {
-    stub_omniauth
-    visit root_url
-  }
+  context 'with an FFI email address' do
+    before {
+      stub_omniauth(email: "ruby@formulafolios.com")
+      visit root_url
+    }
 
-  it 'creates user' do
-    # Assume
-    expect(User.count).to eq 0
-    expect(page).to have_content('Login')
+    it 'creates user' do
+      # Assume
+      expect(User.count).to eq 0
+      expect(page).to have_content('Login')
 
-    # Act
-    click_on 'Login'
+      # Act
+      click_on 'Login'
 
-    # Assert
-    expect(User.count).to eq 1
+      # Assert
+      expect(User.all).not_to be_empty
+    end
+
+    it 'redirects to office selection page' do
+      # Act
+      click_on 'Login'
+
+      # Assert
+      expect(page).to have_current_path(/office/)
+      expect(page).to have_content("Select which office you're in")
+    end
   end
 
-  it 'redirects to office selection page' do
-    # Act
-    click_on 'Login'
+  context 'without an FFI email address' do
+    before {
+      stub_omniauth(email: "johndoe@gmail.com")
+      visit root_url
+    }
 
-    # Assert
-    expect(page).to have_current_path(/office/)
-    expect(page).to have_content("Select which office you're in")
+    it 'redirects to home page' do
+      # Assume
+      expect(page).to have_content('Login')
+
+      # Act
+      click_on 'Login'
+
+      # Assert
+      expect(page).to have_current_path("/")
+    end
+
+    it "doesn't create a user" do
+      # Act
+      click_on 'Login'
+
+      # Assert
+      expect(User.all).to be_empty
+    end
+
+    it "displays flash error" do
+      # Act
+      click_on 'Login'
+
+      # Assert
+      expect(page).to have_content("Please log in with an FFI email address")
+    end
   end
 end
