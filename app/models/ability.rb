@@ -18,5 +18,8 @@ class Ability
     can :read, Survey
     can :create, Nomination
     can :read, @user
+    # employees can update their own office but nothing else
+    can :update, @user, :office
+    can :office, @user
   end
 end

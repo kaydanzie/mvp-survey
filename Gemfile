@@ -80,6 +80,9 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
 
+  # Mock live http requests
+  gem 'webmock'
+
   # Adds more assertions for request (controller) specs
   gem 'rails-controller-testing'
 end

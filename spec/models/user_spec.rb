@@ -19,18 +19,10 @@ RSpec.describe User do
   end
 
   describe '#initialize_user' do
-    let(:user) { build(:user, role: nil, office: nil) }
-
-    before {
-      allow(user).to receive(:initialize_user).and_call_original
-    }
+    let(:user) { build(:user, role: nil) }
 
     it 'sets role to "employee" after creation' do
       expect { user.save }.to change(user, :role).to("employee")
-    end
-
-    it 'sets office to "Grand Rapids" after creation' do
-      expect { user.save }.to change(user, :office).to("Grand Rapids")
     end
   end
 
@@ -45,6 +37,17 @@ RSpec.describe User do
     it "doesn't return surveys without nominations" do
       survey_without_nomination = create(:survey)
       expect(user.surveys_with_nominations).not_to include(survey_without_nomination)
+    end
+  end
+
+  describe '#voted?' do
+    it 'returns true if user nominated someone in the given survey' do
+      # Arrange
+      user = create(:user)
+      nomination = create(:nomination, user: user)
+
+      # Assert
+      expect(user).to be_voted(nomination.survey)
     end
   end
 end

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
   after_create :initialize_user
   validate :ffi_email_address?
+  validates :office, presence: true, on: :update
+  validates :office, inclusion: { in: OFFICES, allow_nil: false }, on: :update
 
   # Users that are able to be nominated by the current user
   # Must be: from the same office, not self
@@ -19,7 +21,6 @@ class User < ApplicationRecord
   # unless they're already set
   def initialize_user
     update(role: "employee") unless role
-    update(office: "Grand Rapids") unless office
   end
 
   def ffi_email_address?
@@ -60,11 +61,5 @@ class User < ApplicationRecord
       last_name: auth.info.last_name,
       email: auth.info.email
     )
-  end
-
-  # Utilized in development only
-  def self.switch_user_roles
-    # Users are created in db/seeds.rb
-    User.all
   end
 end
