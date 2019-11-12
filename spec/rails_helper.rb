@@ -30,6 +30,10 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
   # Default looks under 'fixtures'
   config.fixture_path = 'spec/factories'
   config.file_fixture_path = 'spec/factories/files'
