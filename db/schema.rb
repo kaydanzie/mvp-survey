@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_221551) do
+ActiveRecord::Schema.define(version: 2019_12_03_190616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_221551) do
     t.bigint "nominee_id"
     t.text "comments"
     t.bigint "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["nominee_id"], name: "index_nominations_on_nominee_id"
     t.index ["survey_id"], name: "index_nominations_on_survey_id"
     t.index ["user_id"], name: "index_nominations_on_user_id"
@@ -53,6 +55,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_221551) do
   create_table "winners", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["survey_id"], name: "index_winners_on_survey_id"
     t.index ["user_id"], name: "index_winners_on_user_id"
   end

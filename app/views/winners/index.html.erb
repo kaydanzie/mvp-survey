@@ -1,0 +1,23 @@
+<div class="row justify-content-center my-3">
+  <div class="col-lg-4">
+    <h1 class="py-3">Past Winners</h1>
+
+    <table class="table">
+      <thead class="table-header">
+        <tr>
+          <th scope="col">Survey</th>
+          <th scope="col">MVP</th>
+        </tr>
+      </thead>
+
+      <tbody class="table-body">
+        <% @winners.each do |winner| %>
+          <tr>
+            <td><%= winner.survey.name %></td>
+            <td><%= winner.user.full_name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

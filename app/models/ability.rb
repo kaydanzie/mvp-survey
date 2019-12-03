@@ -15,7 +15,7 @@ class Ability
   end
 
   def employee_abilities
-    can :read, Survey
+    can :read, [Survey, Winner]
     can :create, Nomination
     can :read, @user
     # employees can update their own office but nothing else

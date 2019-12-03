@@ -1,6 +1,11 @@
 class WinnersController < ApplicationController
   load_and_authorize_resource
-  before_action :set_survey
+  before_action :set_survey, except: :index
+
+  # GET /winners
+  def index
+    @winners = Winner.order(created_at: :desc)
+  end
 
   # GET /surveys/:survey_id/winners/new
   def new; end
