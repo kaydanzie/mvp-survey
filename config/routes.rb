@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     resources :nominations, only: [:new, :create]
     resources :winners, only: [:new, :create]
   end
+
+  resources :winners, only: :index
 end

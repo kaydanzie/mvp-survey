@@ -1,6 +1,9 @@
 class WinnersController < ApplicationController
   load_and_authorize_resource
-  before_action :set_survey
+  before_action :set_survey, except: :index
+
+  # GET /winners
+  def index; end
 
   # GET /surveys/:survey_id/winners/new
   def new; end
