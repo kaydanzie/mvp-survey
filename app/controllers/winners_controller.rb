@@ -3,7 +3,9 @@ class WinnersController < ApplicationController
   before_action :set_survey, except: :index
 
   # GET /winners
-  def index; end
+  def index
+    @winners = Winner.order(created_at: :desc)
+  end
 
   # GET /surveys/:survey_id/winners/new
   def new; end
