@@ -10,6 +10,11 @@ RSpec.describe "Winners", type: :request do
     expect(response).to have_http_status(:ok)
   end
 
+  it "renders index" do
+    get winners_path
+    expect(response).to have_http_status(:ok)
+  end
+
   describe "#create" do
     let(:params) { { winner: { user_id: User.last.id } } }
 
