@@ -6,11 +6,16 @@ body.ffi-default-theme {
   h1 { font-size: 30px; }
   h2 { font-size: 26px; }
 
+  span.navbar-toggler-icon {
+    // height: 35px;
+    // width: 35px;
+  }
+
   nav.navbar.primary-nav {
     box-shadow: none;
     background-color: black;
 
-    a {
+    a.nav-link {
       color: #FFF;
       
       &:active, &:hover {
