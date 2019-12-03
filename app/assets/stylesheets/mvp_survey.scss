@@ -6,10 +6,16 @@ body.ffi-default-theme {
   h1 { font-size: 30px; }
   h2 { font-size: 26px; }
 
-  // Horizontal nav style not defined in FFI stylesheet
-  nav.navbar {
-    border-bottom: 1px solid #E7E7E7;
+  nav.navbar.primary-nav {
     box-shadow: none;
-    background-color: #FFFFFF;
+    background-color: black;
+
+    a.nav-link {
+      color: #FFF;
+      
+      &:active, &:hover {
+        color: rgba(228, 228, 245, 0.934);
+      }
+    }
   }
 }

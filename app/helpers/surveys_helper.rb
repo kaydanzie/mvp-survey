@@ -6,7 +6,10 @@ module SurveysHelper
   end
 
   def nomination_message(my_nomination, survey)
-    return "You nominated #{my_nomination.nominee.full_name}" if my_nomination
+    if my_nomination
+      label = tag.strong "Your Nomination: "
+      return label.concat my_nomination.nominee.full_name
+    end
     return if survey.winner
 
     voting_link = link_to "(Vote Here)", new_survey_nomination_path(survey)

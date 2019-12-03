@@ -35,7 +35,7 @@ RSpec.describe "Surveys", type: :request do
       get survey_path(survey)
 
       # Assert
-      expect(response.body).to include("You nominated")
+      expect(response.body).to include("Your Nomination")
     end
 
     it "shows winner's name when chosen" do
@@ -46,7 +46,7 @@ RSpec.describe "Surveys", type: :request do
       get survey_path(survey)
 
       # Assert
-      expect(response.body).to include("The MVP this month is")
+      expect(response.body).to include("Winner:")
     end
 
     it "doesn't show Employee Nominations" do
