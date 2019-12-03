@@ -42,7 +42,7 @@ RSpec.describe SurveysHelper do
     end
 
     it "returns name of nominee" do
-      expect(helper.nomination_message(nomination, nomination.survey)).to include("You nominated")
+      expect(helper.nomination_message(nomination, nomination.survey)).to include("Your Nomination")
     end
   end
 end

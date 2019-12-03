@@ -13,7 +13,7 @@
     <% if @survey.winner %>
       <div class="row justify-content-center mt-4">
         <div class="col text-center">
-          <p>The MVP this month is <%= @survey.winner.user.full_name %>!</p>
+          <p><strong>MVP Winner:</strong> <%= @survey.winner.user.full_name %></p>
         </div>
       </div>
     <% end %>
