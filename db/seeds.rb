@@ -21,7 +21,7 @@ Survey.create(name: "August Survey 2019")
 
 #
 # Nominations
-# Must be from the same office and can't nominate self
+# Should be from the same office and can't nominate self
 Nomination.create(user_id: admin.id, nominee_id: mich1.id, survey_id: survey.id,
                   comments: "Of the highest kind, quality, or order. Surpassing all else or others")
 Nomination.create(user_id: mich1.id, nominee_id: mich2.id, survey_id: survey.id)
