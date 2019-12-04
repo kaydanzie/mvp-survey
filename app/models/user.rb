@@ -9,8 +9,8 @@ class User < ApplicationRecord
   validates :office, inclusion: { in: OFFICES, allow_nil: false }, on: :update
 
   # Users that are able to be nominated by the current user
-  # Must be: from the same office, not self
-  scope :nominatable, ->(user) { where(office: user.office).where.not(id: user.id) }
+  # TODO: Add where(office: user.office)
+  scope :nominatable, ->(user) { where.not(id: user.id) }
 
   has_many :winners, dependent: :destroy
   has_many :nominations, dependent: :nullify
