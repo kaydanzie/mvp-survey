@@ -6,7 +6,7 @@
       <div class="row justify-content-center">
         <div class="col-10 col-lg-4">
           <div class="form-group">
-            <p class="small">You can nominate anyone from your office, besides yourself.</p>
+            <p class="small">You can nominate anyone, besides yourself.</p>
             <%= form.select :nominee_id, User.nominatable(current_user).collect { |p| [ p.full_name, p.id ] }, { include_blank: 'Select employee to nominate' }, class: 'form-control custom-select' %>
 
             <div class="invalid-feedback">
