@@ -2,7 +2,7 @@ class NominationsController < ApplicationController
   load_and_authorize_resource
   before_action :set_survey
 
-  # GET /surveys/:survey_id/nominate
+  # GET /surveys/:survey_id/nominations/new
   def new; end
 
   # POST /surveys/:survey_id/nominations
@@ -17,6 +17,9 @@ class NominationsController < ApplicationController
       end
     end
   end
+
+  # GET /surveys/:survey_id/nominations
+  def index; end
 
   private
 
