@@ -66,6 +66,9 @@ group :development do
 
   # Alternate user roles easily in development
   gem 'switch_user'
+
+  # Preview emails in browser rather than delivering them: https://github.com/ryanb/letter_opener
+  gem 'letter_opener_web'
 end
 
 group :test do
