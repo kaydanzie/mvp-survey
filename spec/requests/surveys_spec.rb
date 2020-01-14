@@ -57,13 +57,13 @@ RSpec.describe "Surveys", type: :request do
       get survey_path(survey)
 
       # Assert
-      expect(response.body).not_to include("Employee Nominations")
+      expect(response.body).not_to include("See All Nominations")
     end
 
     describe '#admin' do
-      it "can see Employee Nominations" do
+      it "shows link to employee nominations" do
         get survey_path(survey)
-        expect(response.body).to include("Employee Nominations")
+        expect(response.body).to include("See All Nominations")
       end
     end
   end

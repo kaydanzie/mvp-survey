@@ -10,6 +10,11 @@ RSpec.describe "Nominations", type: :request do
     expect(response).to have_http_status(:ok)
   end
 
+  it "renders index" do
+    get survey_nominations_path(survey)
+    expect(response).to have_http_status(:ok)
+  end
+
   describe "#create" do
     let(:params) { { nomination: { nominee_id: create(:user).id } } }
 
