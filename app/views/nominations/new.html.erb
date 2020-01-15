@@ -18,6 +18,8 @@
             <%= form.label "Comments (optional)" %>
             <%= form.text_area :comments, class: 'form-control' %>
           </div>
+
+          <%= form.hidden_field :user_id, value: @current_user.id %>
         </div>
       </div>
 

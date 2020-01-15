@@ -28,7 +28,7 @@ class NominationsController < ApplicationController
   end
 
   def nomination_params
-    params.require(:nomination).permit(:comments, :nominee_id)
-          .merge(user_id: current_user.id, survey_id: @survey&.id)
+    params.require(:nomination).permit(:comments, :nominee_id, :user_id)
+          .merge(survey_id: @survey&.id)
   end
 end
