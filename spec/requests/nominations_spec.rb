@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Nominations", type: :request do
   let(:survey) { create(:survey) }
+  let(:admin) { create(:admin) }
 
-  before { sign_in create(:admin) }
+  before { sign_in admin }
 
   it "renders new" do
     get new_survey_nomination_path(survey)
@@ -16,7 +17,9 @@ RSpec.describe "Nominations", type: :request do
   end
 
   describe "#create" do
-    let(:params) { { nomination: { nominee_id: create(:user).id } } }
+    let(:params) {
+      { nomination: { nominee_id: create(:user).id, user_id: admin.id } }
+    }
 
     it "re-renders form on error" do
       params[:nomination][:nominee_id] = nil
