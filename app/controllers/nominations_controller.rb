@@ -2,7 +2,7 @@ class NominationsController < ApplicationController
   load_and_authorize_resource
   before_action :set_survey
 
-  # GET /surveys/:survey_id/nominate
+  # GET /surveys/:survey_id/nominations/new
   def new; end
 
   # POST /surveys/:survey_id/nominations
@@ -18,6 +18,9 @@ class NominationsController < ApplicationController
     end
   end
 
+  # GET /surveys/:survey_id/nominations
+  def index; end
+
   private
 
   def set_survey
@@ -25,7 +28,7 @@ class NominationsController < ApplicationController
   end
 
   def nomination_params
-    params.require(:nomination).permit(:comments, :nominee_id)
-          .merge(user_id: current_user.id, survey_id: @survey&.id)
+    params.require(:nomination).permit(:comments, :nominee_id, :user_id)
+          .merge(survey_id: @survey&.id)
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :surveys do
-    resources :nominations, only: [:new, :create]
+    resources :nominations, only: [:new, :create, :index]
     resources :winners, only: [:new, :create]
   end
 
