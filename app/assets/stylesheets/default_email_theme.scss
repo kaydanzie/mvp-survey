@@ -1,3 +1,21 @@
+@import 'bootstrap';
+
 body.email {
-  
+  $email-font: 'Messina Sans Regular', Arial, Helvetica, Calibri;
+  $ffi-white: #fff;
+  $ffi-primary-text-color: #191E1E;
+  $ffi-primary-green: #34BC72;
+  $ffi-primary-blue: #003BDE;
+  $ffi-dark-blue: #0032BB;
+  $email-border-grey: #DADADA;
+  $ffi-primary-grey: #909198;
+  $ffi-secondary-text-color: #5D6A7A;
+  $secondary-email-font: "Messina Sans Bold", Arial, Helvetica, Calibri;
+
+  font-family: $email-font;
+  background-color: $ffi-white;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
 }
