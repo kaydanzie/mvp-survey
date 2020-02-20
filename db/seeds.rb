@@ -6,9 +6,12 @@ User.destroy_all
 #
 # Users
 # Admin, Remote Employee, GR Employee, 2 MI Employees for easier development
-admin = User.create(email: "admin@formulafolios.com", first_name: "Admin", role: "admin")
-mich1 = User.create(email: "employee_mi@formulafolios.com", first_name: "MI Employee")
-mich2 = User.create(email: "mi2@formulafolios.com", first_name: "MI Employee 2")
+admin = User.create(email: "admin@formulafolios.com", first_name: "Admin", role: "admin",
+                    office: "Grand Rapids")
+mich1 = User.create(email: "employee_mi@formulafolios.com", first_name: "MI Employee",
+                    office: "Grand Rapids")
+mich2 = User.create(email: "mi2@formulafolios.com", first_name: "MI Employee 2",
+                    office: "Grand Rapids")
 User.create(email: "employee_ca@formulafolios.com",
             first_name: "CA Employee", office: "Costa Mesa")
 User.create(email: "employee_remote@formulafolios.com",
