@@ -1,0 +1,9 @@
+<div class="email-container">
+  <div>
+    <p><strong>MVP Winner for <%= @survey.name %>:</strong> <%= @winner.user.full_name %></p>
+  </div>
+
+  <div>
+    <p>To see all past winners, visit the <%= link_to "Past MVPs", winners_url %> page.</p>
+  </div>
+</div>
