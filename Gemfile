@@ -41,6 +41,9 @@ gem 'omniauth-google-oauth2', '~> 0.6.0'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
+# Convenient way to add a stylesheet to an HTML email rather than inline css
+gem 'premailer-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
 
