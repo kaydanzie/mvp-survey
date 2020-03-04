@@ -2,9 +2,10 @@ require "rails_helper"
 
 RSpec.describe Winner, type: :mailer do
   let(:winner) { create(:winner) }
-  let(:mail) { WinnerMailer.winner_email(winner.id, winner.survey.id) }
 
   describe "#winner_email" do
+    let(:mail) { WinnerMailer.winner_email(winner.id, winner.survey.id) }
+
     it 'renders the body' do
       expect(mail.body.encoded).to match("To see all past winners")
     end
