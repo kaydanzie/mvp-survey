@@ -3,6 +3,8 @@ class WinnerMailer < ApplicationMailer
     @winner = Winner.find(winner_id)
     @survey = Survey.find(survey_id)
 
-    mail to: User.pluck(:email), subject: "New MVP"
+    User.pluck(:email).each do |email|
+      mail to: email, subject: "New MVP"
+    end
   end
 end
