@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe WinnerMailer do
+RSpec.describe Winner, type: :mailer do
   let(:winner) { create(:winner) }
   let(:mail) { WinnerMailer.winner_email(winner.id, winner.survey.id) }
 
