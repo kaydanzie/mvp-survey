@@ -24,7 +24,7 @@ RSpec.describe "Surveys", type: :request do
 
     it "displays link when user hasn't nominated" do
       get survey_path(survey)
-      expect(response.body).to include("Vote Here")
+      expect(response.body).to include("Nominate Here")
     end
 
     it 'displays message when user has nominated' do

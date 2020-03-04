@@ -35,9 +35,9 @@ RSpec.describe SurveysHelper do
         expect(helper.nomination_message(nil, winner.survey)).to be_nil
       end
 
-      it "returns link to vote if no winner yet" do
+      it "returns link to nominate if no winner yet" do
         # Arrange
-        expect(helper.nomination_message(nil, create(:survey))).to include("Vote Here")
+        expect(helper.nomination_message(nil, create(:survey))).to include("Nominate Here")
       end
     end
 
