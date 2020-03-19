@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Survey, type: :mailer do
-  describe "#winner_email" do
+  describe "#nominate_email" do
     let(:survey) { create(:survey) }
     let!(:user) { create(:user) }
     let(:mail) { SurveyMailer.nominate_email(survey.id) }
