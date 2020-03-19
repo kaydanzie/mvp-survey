@@ -8,8 +8,10 @@ RSpec.describe Winner do
     it { expect(winner_subject).to validate_presence_of(:user_id) }
   end
 
-  it 'sends WinnerEmail after creation' do
+  it 'sends winner_email after creation' do
     # Act & Assert
-    expect { create(:winner) }.to have_enqueued_job.on_queue('mailers')
+    # creating a survey also queues an email, so we have to create the survey first
+    survey = create(:survey)
+    expect { create(:winner, survey: survey) }.to have_enqueued_job.on_queue('mailers')
   end
 end
